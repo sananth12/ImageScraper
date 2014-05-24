@@ -17,10 +17,10 @@ If you run into problems in the compilation of ``lxml`` through ``pip``, install
 ```sh
 $cd ImageScraper/image_scraper/
 $python __init__.py
-$Enter URL to scrap: https://github.com
-$Found 6 images:        
-$How many images to you want ? : 6
-$Done.
+$ Enter URL to scrap: https://github.com
+$ Found 6 images:        
+$ How many images to you want ? : 6
+$ Done.
 ```
 A new folder called "images" will be created in the same place, containing all the downloaded images.
 
