@@ -17,7 +17,7 @@ $ pip install ImageScraper
  
 Usage
 -----
-##If you downloaded the tar:
+###If you downloaded the tar:
 Extract the contents of the tar file.
 Note that ``ImageScraper`` depends on ``lxml``. and ``requests``. 
 If you run into problems in the compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and ``libxslt-dev`` packages on your system.
@@ -31,7 +31,7 @@ $ How many images to you want ? : 6
 $ Done.
 ```
 
-##If installed using pip:
+###If installed using pip:
 Open python in terminal.
 
 ```sh
