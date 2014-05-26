@@ -31,7 +31,7 @@ $cd ImageScraper/image_scraper/
 $python __init__.py
 $ Enter URL to scrap: https://github.com
 $ Found 6 images:
-$ How many images to you want ? : 6
+$ How many images do you want ? : 6
 $ Done.
 ```
 
@@ -43,7 +43,7 @@ $python
 >>>import image_scraper
    Enter URL to scrap: https://github.com
    Found 6 images:
-   How many images to you want ? : 6
+   How many images do you want ? : 6
     Done.
 ```
 

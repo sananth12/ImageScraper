@@ -5,19 +5,36 @@ import requests
 import urlparse
 import os
 
+def process_links(links):
+    x=[]
+    for l in links:
+        if(l[-3:]=="jpg" or l[-3:]=="png" or l[-3:]=="gif"):
+                x.append(l)
+    return x
+ 
 URL = raw_input("Enter URL to scrap: ")
 
 page = requests.get(URL)
 
 tree = html.fromstring(page.text)
+#img = tree.xpath('//img/@src')
 img = tree.xpath('//img/@src')
+
+links = tree.xpath('//a/@href')
+
+img_links =  process_links(links)
+
+##sub_img = tree.xpath('//descendant-or-self::*[img]/img/@src') 
+
+img.extend(img_links)
 
 if len(img)==0:
     sys.exit( "Sorry, no images found")
 
 print "Found %s images: "%len(img)
 
-no_to_download = int(input('How many images to you want ? : '))
+no_to_download = int(input('How many images do you want ? : '))
+
 images = [urlparse.urljoin(page.url, url) for url in img] 
 
 for x  in range(0,len(img)):
@@ -36,7 +53,7 @@ for img_url in img :
     	f.close()    
 	count+=1
     except :
-	print "Broken url"
+	print "Can't download %s"%img_url
     if count==no_to_download:
         	break
 print "Done."
