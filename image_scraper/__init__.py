@@ -29,13 +29,17 @@ if not os.path.exists('images'):
 
 count=0
 for img_url in img :
-    tmp = requests.request('get',img_url)
-    f = open('images/%s' % img_url.split('/')[-1], 'w')
-    f.write( tmp.content)
-    f.close()
-    count+=1
+    try:
+    	tmp = requests.request('get',img_url)
+    	f = open('images/%s' % img_url.split('/')[-1], 'w')
+    	f.write( tmp.content)
+    	f.close()    
+	count+=1
+    except :
+	print "Broken url"
     if count==no_to_download:
-        break
+        	break
 print "Done."
 
 
+	

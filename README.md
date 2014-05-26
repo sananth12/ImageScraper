@@ -48,8 +48,16 @@ $python
 ```
 
 
+####NOTE:
 A new folder called "images" will be created in the same place, containing all the downloaded images.
+
+Issues
+------
+
+Q.)All images were not downloaded?
+It could be that the content was injected into the page via javascript and this scraper doesn't run javascript. 
+ 
 
 Todo
 ----
-Create and run tests on travis-ci.org
+Scraping sites which inject image tags via javascript using PhantomJS or Selenium.
