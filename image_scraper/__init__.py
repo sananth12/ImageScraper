@@ -17,7 +17,7 @@ if len(img)==0:
 
 print "Found %s images: "%len(img)
 
-no_to_download = int(input('How many images to you want ? : '))
+no_to_download = int(input('How many images do you want ? : '))
 images = [urlparse.urljoin(page.url, url) for url in img] 
 
 for x  in range(0,len(img)):
