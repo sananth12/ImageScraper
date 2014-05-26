@@ -55,6 +55,7 @@ Issues
 ------
 
 Q.)All images were not downloaded?
+
 It could be that the content was injected into the page via javascript and this scraper doesn't run javascript. 
  
 
