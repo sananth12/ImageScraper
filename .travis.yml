@@ -4,6 +4,11 @@ python:
   - "2.7"
 # command to install dependencies
 #install: pip install -r requirements.txt --use-mirrors
-
+install:
+  - pip install coveralls
 # command to run tests
-script:  nosetests tests/test.py
+script: 
+	- nosetests tests/test.py
+	- coverage run --source=ImageScrpaer setup.py test
+after_success:
+  coveralls
