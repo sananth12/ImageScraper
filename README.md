@@ -5,7 +5,7 @@ A simple python script which downloads all images in the given webpage.
 
 | Build Status | Version | Downloads |
 | ------------ | ------- | ------------------- |
-| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![Downloads](https://pypip.in/d/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) |
+| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](https://pypip.in/d/ImageScraper/badge.png)](https://crate.io/packages/ImageScraper/) |
 
 
 Download
