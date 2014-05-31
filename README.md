@@ -51,6 +51,16 @@ $python
 ####NOTE:
 A new folder called "images" will be created in the same place, containing all the downloaded images.
 
+
+Upgrading
+---------
+
+Please check and updates and upgrade using:
+
+```sh
+$ sudo  pip install ImageScraper --upgrade
+```
+
 Issues
 ------
 
@@ -61,4 +71,4 @@ It could be that the content was injected into the page via javascript and this 
 
 Todo
 ----
-Scraping sites which inject image tags via javascript using PhantomJS or Selenium.
+Scraping sites which inject image tags via javascript, by using PhantomJS or Selenium.
