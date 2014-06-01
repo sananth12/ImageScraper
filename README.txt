@@ -31,7 +31,7 @@ $ Done.
 
 If installed using pip:
 
-Open python in terminal.
+Open python in terminal
 
 $python
 >>>import image_scraper
@@ -43,6 +43,15 @@ $python
 
 NOTE:
 A new folder called "images" will be created in the same place, containing all the downloaded images.
+
+
+Upgrading
+---------
+
+Check and updates and upgrade using:
+
+$ sudo  pip install ImageScraper --upgrade
+
 
 Issues
 ------
