@@ -55,7 +55,7 @@ A new folder called "images" will be created in the same place, containing all t
 Upgrading
 ---------
 
-Please check and updates and upgrade using:
+Check if a newer version if available  and upgrade using:
 
 ```sh
 $ sudo  pip install ImageScraper --upgrade
