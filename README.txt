@@ -31,7 +31,7 @@ $ Done.
 
 If installed using pip:
 
-Open python in terminal
+Open python in terminal:
 
 $python
 >>>import image_scraper
@@ -62,5 +62,5 @@ It could be that the content was injected into the page via javascript and this 
 
 Todo
 ----
-Scraping sites which inject image tags via javascript using PhantomJS or Selenium.
+Scraping sites which inject image tags via javascript by using  PhantomJS or Selenium.
 
