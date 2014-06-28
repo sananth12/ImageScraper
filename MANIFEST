@@ -2,3 +2,4 @@
 README.txt
 setup.py
 image_scraper/__init__.py
+image_scraper/progressbar.py
