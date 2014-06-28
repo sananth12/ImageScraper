@@ -1,6 +1,5 @@
 ImageScraper
 ============
-First python app :D
 A simple python script which downloads all images in the given webpage.
 
 

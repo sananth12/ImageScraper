@@ -4,6 +4,7 @@ from lxml import html
 import requests
 import urlparse
 import os
+from progressbar import *
 
 def process_links(links):
     x=[]
@@ -45,6 +46,13 @@ if not os.path.exists('images'):
     os.makedirs('images')
 
 count=0
+bar="["
+percent=0.0
+failed=0
+widgets = ['Progress: ', Percentage(), ' ', Bar(marker=RotatingMarker()),' ', ETA(), ' ', FileTransferSpeed()]
+pbar = ProgressBar(widgets=widgets, maxval=100).start()
+
+
 for img_url in img :
     try:
     	tmp = requests.request('get',img_url)
@@ -52,11 +60,18 @@ for img_url in img :
     	f.write( tmp.content)
     	f.close()    
 	count+=1
-    except :
-	print "Can't download %s"%img_url
+        percent = percent + 100.0/len(img)
+        pbar.update( percent )
+    
+    except:
+        failed +=1
+	#print "Can't download %s"%img_url
     if count==no_to_download:
         	break
-print "Done."
+
+pbar.finish()
+print 
+print "Done. Failed to download %s images"%failed
 
 
 	
