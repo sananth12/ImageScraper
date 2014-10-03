@@ -8,9 +8,10 @@ from progressbar import *
 import argparse
 
 def process_links(links):
-    x=[]
+    x = []
     for l in links:
-        if(l[-3:]=="jpg" or l[-3:]=="png" or l[-3:]=="gif"):
+        # this is insane and begs for regular expressions
+        if l[-3:] == "jpg" or l[-3:] == "png" or l[-3:] == "gif"):
                 x.append(l)
     return x
  
@@ -38,29 +39,29 @@ def console_main():
     img.extend(img_links)
 
     if len(img)==0:
-        sys.exit( "Sorry, no images found")
+        sys.exit("Sorry, no images found")
 
     print "Found %s images: "%len(img)
 
     #no_to_download = int(input('How many images do you want ? : '))
     no_to_download = args.max_images
 
-    images = [urlparse.urljoin(page.url, url) for url in img] 
+    images = [urlparse.urljoin(page.url, url) for url in img]
     print img
     print images
     # this does not work if the urls are relative
     for x  in range(0,len(img)):
-        if  img[x][:4]!="http":
-            img[x]="https:"+img[x]
+        if  img[x][:4] != "http":
+            img[x] = "https:" + img[x]
 
     if not os.path.exists('images'):
         os.makedirs('images')
 
-    count=0
-    bar="["
-    percent=0.0
-    failed=0
-    widgets = ['Progress: ', Percentage(), ' ', Bar(marker=RotatingMarker()),' ', ETA(), ' ', FileTransferSpeed()]
+    count = 0
+    bar = "["
+    percent = 0.0
+    failed = 0
+    widgets = ['Progress: ', Percentage(), ' ', Bar(marker = RotatingMarker()),' ', ETA(), ' ', FileTransferSpeed()]
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
 
 
@@ -68,25 +69,21 @@ def console_main():
     #for img_url in img :
     for img_url in images :
         try:
-            tmp = requests.request('get',img_url)
+            tmp = requests.request('get', img_url)
             print "status : %s" % tmp.status_code
             f = open('images/%s' % img_url.split('/')[-1], 'w')
-            f.write( tmp.content)
+            f.write(tmp.content)
             f.close()    
-            count+=1
-            percent = percent + 100.0/len(img)
-            pbar.update( percent )
-        
+            count += 1
+            percent=percent + 100.0 / len(img)
+            pbar.update(percent)
         except:
-            failed +=1
+            failed += 1
             #print "Can't download %s"%img_url
-        if count==no_to_download:
-                    break
+        if count == no_to_download:
+            break
 
     pbar.finish()
-    print 
-    print "Done. Failed to download %s images"%failed
+    print "\nDone. Failed to download %s images" % failed
     return
 
-
-	
