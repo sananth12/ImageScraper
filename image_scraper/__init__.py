@@ -7,83 +7,85 @@ import os
 from progressbar import *
 import argparse
 
+
 def process_links(links):
     x = []
     for l in links:
         # this is insane and begs for regular expressions
-        if l[-3:] == "jpg" or l[-3:] == "png" or l[-3:] == "gif"):
+        if l[-3:] == "jpg" or l[-3:] == "png" or l[-3:] == "gif":
                 x.append(l)
     return x
- 
+
+
 def console_main():
     parser = argparse.ArgumentParser()
     parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
-    parser.add_argument('--max-images', type=int, default=1, help="URL to scrape")
+    parser.add_argument('--max-images', type=int, default=1,
+                        help="URL to scrape")
     args = parser.parse_args()
 
-    #URL = raw_input("Enter URL to scrap: ")
+    # URL = raw_input("Enter URL to scrap: ")
     URL = args.url2scrape[0]
 
     page = requests.get(URL)
 
     tree = html.fromstring(page.text)
-    #img = tree.xpath('//img/@src')
+    # img = tree.xpath('//img/@src')
     img = tree.xpath('//img/@src')
 
     links = tree.xpath('//a/@href')
 
-    img_links =  process_links(links)
+    img_links = process_links(links)
 
-    ##sub_img = tree.xpath('//descendant-or-self::*[img]/img/@src') 
+    # sub_img = tree.xpath('//descendant-or-self::*[img]/img/@src')
 
     img.extend(img_links)
 
-    if len(img)==0:
+    if len(img) == 0:
         sys.exit("Sorry, no images found")
 
-    print "Found %s images: "%len(img)
+    print "Found %s images: " % len(img)
 
-    #no_to_download = int(input('How many images do you want ? : '))
+    # no_to_download = int(input('How many images do you want ? : '))
     no_to_download = args.max_images
 
     images = [urlparse.urljoin(page.url, url) for url in img]
     print img
     print images
     # this does not work if the urls are relative
-    for x  in range(0,len(img)):
-        if  img[x][:4] != "http":
+    for x in range(0, len(img)):
+        if img[x][:4] != "http":
             img[x] = "https:" + img[x]
 
     if not os.path.exists('images'):
         os.makedirs('images')
 
     count = 0
-    bar = "["
     percent = 0.0
     failed = 0
-    widgets = ['Progress: ', Percentage(), ' ', Bar(marker = RotatingMarker()),' ', ETA(), ' ', FileTransferSpeed()]
+    widgets = ['Progress: ', Percentage(), ' ', Bar(marker=RotatingMarker()),
+               ' ', ETA(), ' ', FileTransferSpeed()]
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
 
-
     print img
-    #for img_url in img :
-    for img_url in images :
+    # for img_url in img :
+    for img_url in images:
+        img_request = None
         try:
-            tmp = requests.request('get', img_url)
-            print "status : %s" % tmp.status_code
-            f = open('images/%s' % img_url.split('/')[-1], 'w')
-            f.write(tmp.content)
-            f.close()    
-            count += 1
-            percent=percent + 100.0 / len(img)
-            pbar.update(percent)
+            img_request = requests.request('get', img_url)
         except:
             failed += 1
-            #print "Can't download %s"%img_url
+        # print "Can't download %s"%img_url
+        print "status : %s" % img_request.status_code
+        f = open('images/%s' % img_url.split('/')[-1], 'w')
+        f.write(img_request.content)
+        f.close()
+        count += 1
+        percent = percent + 100.0 / len(img)
+        pbar.update(percent)
         if count == no_to_download:
             break
 
     pbar.finish()
     print "\nDone. Failed to download %s images" % failed
     return
-
