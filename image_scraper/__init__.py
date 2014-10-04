@@ -75,6 +75,8 @@ def console_main():
             img_request = requests.request('get', img_url)
         except:
             failed += 1
+            print "download of %s failed; status code %s" % \
+                  (img_url, img_request.status_code)
         # print "Can't download %s"%img_url
         print "status : %s" % img_request.status_code
         f = open('images/%s' % img_url.split('/')[-1], 'w')
