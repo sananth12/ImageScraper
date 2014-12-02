@@ -4,7 +4,7 @@ A simple python script which downloads all images in the given webpage.
 
 | Build Status | Version | Downloads |
 | ------------ | ------- | ------------------- |
-| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-1.5k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
+| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-3.5k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
 
 
 Download
@@ -20,10 +20,15 @@ $ pip install ImageScraper
  
 Usage
 -----
+```sh
+image-scraper [-h] [--max-images MAX_IMAGES] url2scrape
+```
+
 ###If you downloaded the tar:
 Extract the contents of the tar file.
 Note that ``ImageScraper`` depends on ``lxml``. and ``requests``. 
 If you run into problems in the compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and ``libxslt-dev`` packages on your system.
+
 
 ```sh
 $cd ImageScraper/
