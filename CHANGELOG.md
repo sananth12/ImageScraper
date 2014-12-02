@@ -15,3 +15,9 @@ Master
 
 * Option to choose number of images
 * Added pypi setup script
+
+###v2.0.0
+
+* Now you can just run it by simply doing:
+
+	$image-scraper [url-to-scrap]
