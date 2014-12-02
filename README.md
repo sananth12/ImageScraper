@@ -26,24 +26,18 @@ Note that ``ImageScraper`` depends on ``lxml``. and ``requests``.
 If you run into problems in the compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and ``libxslt-dev`` packages on your system.
 
 ```sh
-$cd ImageScraper/image_scraper/
-$python __init__.py
-$ Enter URL to scrap: https://github.com
-$ Found 6 images:
-$ How many images do you want ? : 6
-$ Done.
+$cd ImageScraper/
+$python setup.py install
+$image-scraper [url to scrap]
+
 ```
 
 ###If installed using pip:
 Open python in terminal.
 
 ```sh
-$python
->>>import image_scraper
-   Enter URL to scrap: https://github.com
-   Found 6 images:
-   How many images do you want ? : 6
-    Done.
+$image-scraper [url to scrap]
+
 ```
 
 
