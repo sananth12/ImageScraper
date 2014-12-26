@@ -52,20 +52,3 @@ Check and updates and upgrade using:
 $ sudo  pip install ImageScraper --upgrade
 
 
-Issues
-------
-
-Q.)All images were not downloaded?
-It could be that the content was injected into the page via javascript and this scraper doesn't run javascript.
-
-
-Contributing
-------------
-Feel free to give a pull request or report bugs/improvements.
-
-
-
-Todo
-----
-Scraping sites which inject image tags via javascript by using  PhantomJS or Selenium.
-
