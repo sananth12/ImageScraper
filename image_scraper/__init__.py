@@ -89,5 +89,5 @@ def console_main():
             break
 
     pbar.finish()
-    print "\nDone. Failed to download %s images" % failed
+    print "\nDone!\nFailed to download %s images" % failed
     return
