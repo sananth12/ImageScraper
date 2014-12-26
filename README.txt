@@ -32,7 +32,6 @@ $python setup.py install
 $image-scraper [url to scrap]
 
 
-
 If installed using pip:
 =======================
 Open python in terminal.
@@ -58,6 +57,12 @@ Issues
 
 Q.)All images were not downloaded?
 It could be that the content was injected into the page via javascript and this scraper doesn't run javascript.
+
+
+Contributing
+------------
+Feel free to give a pull request or report bugs/improvements.
+
 
 
 Todo

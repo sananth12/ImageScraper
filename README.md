@@ -4,7 +4,7 @@ A simple python script which downloads all images in the given webpage.
 
 | Build Status | Version | Downloads |
 | ------------ | ------- | ------------------- |
-| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-5108%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
+| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-5600%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
 
 
 Download
@@ -70,3 +70,10 @@ It could be that the content was injected into the page via javascript and this 
 Todo
 ----
 Scraping sites which inject image tags via javascript, by using PhantomJS or Selenium.
+
+
+Contribute
+----------
+If you want to add features, improve them, or report issues, feel free to send a pull request!!
+
+Special thanks to @osborne6 for making a proper CLI.  :)
