@@ -1,4 +1,4 @@
-ImageScraper
+ImageScraper :page_with_curl:
 ============
 A simple python script which downloads all images in the given webpage.
 
