@@ -23,6 +23,8 @@ def console_main():
     parser.add_argument('--max-images', type=int, default=1,
                         help="URL to scrape")
     args = parser.parse_args()
+    
+    print "\n ImageScraper\n ============\n Requesting page....\n"
 
     URL = args.url2scrape[0]
 
@@ -42,13 +44,13 @@ def console_main():
 
     if len(img) == 0:
         sys.exit("Sorry, no images found")
-    print "\n ImageScraper\n ============\n"
+    
     print "Found %s images: " % len(img)
 
     no_to_download = args.max_images
 
     images = [urlparse.urljoin(page.url, url) for url in img]
-    print img
+    #print img
     #print images
     # this does not work if the urls are relative
     for x in range(0, len(img)):
@@ -81,7 +83,7 @@ def console_main():
         f.write(img_request.content)
         f.close()
         count += 1
-        percent = 100.0* (count / len(img))
+        percent = percent + 100.0 / no_to_download
         pbar.update(percent)
         if count == no_to_download:
             break
