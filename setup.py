@@ -1,9 +1,9 @@
 #from distutils.core import setup
 from setuptools import setup
 setup(name='ImageScraper',
-      version='2.0.1',
+      version='2.0.3',
     install_requires=['lxml'],
-    author='Anantha Natarajan',
+    author='Anantha Natarajan S',
     author_email='sananthanatarajan12@gmail.com',
     packages=['image_scraper'],
     entry_points = {

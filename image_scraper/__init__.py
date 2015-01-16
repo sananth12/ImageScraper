@@ -11,8 +11,8 @@ import argparse
 def process_links(links):
     x = []
     for l in links:
-        # this is insane and begs for regular expressions
-        if l[-3:] == "jpg" or l[-3:] == "png" or l[-3:] == "gif":
+        # TODO regular expressions
+        if l[-3:] == "jpg" or l[-3:] == "png" or l[-3:] == "gif" or l[-3:] == "svg" :
                 x.append(l)
     return x
 
@@ -24,13 +24,12 @@ def console_main():
                         help="URL to scrape")
     args = parser.parse_args()
 
-    # URL = raw_input("Enter URL to scrap: ")
     URL = args.url2scrape[0]
 
     page = requests.get(URL)
 
     tree = html.fromstring(page.text)
-    # img = tree.xpath('//img/@src')
+
     img = tree.xpath('//img/@src')
 
     links = tree.xpath('//a/@href')
@@ -43,15 +42,14 @@ def console_main():
 
     if len(img) == 0:
         sys.exit("Sorry, no images found")
-
+    print "\n ImageScraper\n ============\n"
     print "Found %s images: " % len(img)
 
-    # no_to_download = int(input('How many images do you want ? : '))
     no_to_download = args.max_images
 
     images = [urlparse.urljoin(page.url, url) for url in img]
     print img
-    print images
+    #print images
     # this does not work if the urls are relative
     for x in range(0, len(img)):
         if img[x][:4] != "http":
@@ -67,7 +65,7 @@ def console_main():
                ' ', ETA(), ' ', FileTransferSpeed()]
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
 
-    print img
+    #print img
     # for img_url in img :
     for img_url in images:
         img_request = None
@@ -77,17 +75,17 @@ def console_main():
             failed += 1
             print "download of %s failed; status code %s" % \
                   (img_url, img_request.status_code)
-        # print "Can't download %s"%img_url
-        print "status : %s" % img_request.status_code
+            # print "Can't download %s"%img_url
+            print "status : %s" % img_request.status_code
         f = open('images/%s' % img_url.split('/')[-1], 'w')
         f.write(img_request.content)
         f.close()
         count += 1
-        percent = percent + 100.0 / len(img)
+        percent = 100.0* (count / len(img))
         pbar.update(percent)
         if count == no_to_download:
             break
 
     pbar.finish()
-    print "\nDone!\nFailed to download %s images" % failed
+    print "\nDone!\nDownloaded %s images" % (count-failed)
     return
