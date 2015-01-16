@@ -21,7 +21,10 @@ def console_main():
     parser = argparse.ArgumentParser()
     parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
     parser.add_argument('--max-images', type=int, default=1,
-                        help="URL to scrape")
+                        help="Limit on number of images")
+    parser.add_argument('-s', '--save-dir', type=str, default=1,
+                        help="Directory in which images should be saved")
+
     args = parser.parse_args()
     
     print "\n ImageScraper\n ============\n Requesting page....\n"
@@ -46,11 +49,16 @@ def console_main():
     img.extend(img_links)
 
     if len(img) == 0:
-        sys.exit("Sorry, no images found")
+        sys.exit("Sorry, no images found.")
     
     print "Found %s images: " % len(img)
 
     no_to_download = args.max_images
+
+    save_dir = args.save_dir
+    if save_dir == 1: #argument not given
+        save_dir = "images"
+    download_path = os.path.join(os.getcwd(), save_dir)
 
     images = [urlparse.urljoin(page.url, url) for url in img]
     #print img
@@ -60,8 +68,16 @@ def console_main():
         if img[x][:4] != "http":
             img[x] = "https:" + img[x]
 
-    if not os.path.exists('images'):
-        os.makedirs('images')
+    #Checking if the path exists
+    if os.path.exists(download_path):
+        if not os.access(os.path.dirname(download_path), os.W_OK):
+            #path exists but no write permissions
+            sys.exit("Sorry, the directory can't be accessed.")
+    elif os.access(os.path.dirname(download_path), os.W_OK):
+        #if write permissions are availible, create the directory
+        os.makedirs(download_path)
+    else:
+        sys.exit("Sorry, the directory can't be created.")
 
     count = 0
     percent = 0.0
@@ -82,7 +98,7 @@ def console_main():
                   (img_url, img_request.status_code)
             # print "Can't download %s"%img_url
             print "status : %s" % img_request.status_code
-        f = open('images/%s' % img_url.split('/')[-1], 'w')
+        f = open(os.path.join(download_path,  img_url.split('/')[-1]), 'w')
         f.write(img_request.content)
         f.close()
         count += 1
