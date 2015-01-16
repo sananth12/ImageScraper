@@ -27,8 +27,11 @@ def console_main():
     print "\n ImageScraper\n ============\n Requesting page....\n"
 
     URL = args.url2scrape[0]
-
-    page = requests.get(URL)
+    try:
+        page = requests.get(URL)
+    except requests.exceptions.MissingSchema:
+        URL = "http://" + URL #Default schema is HTTP unless specified
+        page = requests.get(URL)
 
     tree = html.fromstring(page.text)
 
