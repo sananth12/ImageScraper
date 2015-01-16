@@ -4,7 +4,7 @@ A simple python script which downloads all images in the given webpage.
 
 | Build Status | Version | Downloads |
 | ------------ | ------- | ------------------- |
-| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-6034%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
+| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-6334%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
 
 
 Download
@@ -41,7 +41,7 @@ $image-scraper [url to scrap]
 Open python in terminal.
 
 ```sh
-$image-scraper [url to scrap]
+$image-scraper --max-images 10 [url to scrap]
 
 ```
 
