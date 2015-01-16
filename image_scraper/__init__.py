@@ -22,30 +22,47 @@ def console_main():
     parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
     parser.add_argument('--max-images', type=int, default=1,
                         help="Limit on number of images")
-<<<<<<< HEAD
     parser.add_argument('-s', '--save-dir', type=str, default=None,
-=======
-    parser.add_argument('-s', '--save-dir', type=str, default=1,
->>>>>>> c7b8c6c... Added option to save in custom directory
                         help="Directory in which images should be saved")
-
+    parser.add_argument('-g', '--injected', help="scrape injected images",
+                        action="store_true")
     args = parser.parse_args()
     
+    URL = args.url2scrape[0]
+
+    no_to_download = args.max_images
+
+    save_dir = args.save_dir
+    if save_dir == 1: #argument not given
+        save_dir = "images"
+    download_path = os.path.join(os.getcwd(), save_dir)
+
+    use_ghost = args.injected
+
     print "\n ImageScraper\n ============\n Requesting page....\n"
 
-    URL = args.url2scrape[0]
-    try:
-        page = requests.get(URL)
-    except requests.exceptions.MissingSchema:
-        URL = "http://" + URL #Default schema is HTTP unless specified
-        page = requests.get(URL)
+    if use_ghost:
+        import selenium
+        import selenium.webdriver
+        driver = selenium.webdriver.PhantomJS(service_log_path=os.path.devnull)
+        driver.get(URL)
+        page_html = driver.page_source
+        page_url = driver.current_url
+        driver.quit()
+    else:
+        try:
+            page = requests.get(URL)
+            page_html= page.text
+            page_url = page.url
+        except requests.exceptions.MissingSchema:
+            URL = "http://" + URL #Default schema is HTTP unless specified
+            page = requests.get(URL)
+            page_html= page.text
+            page_url = page.url
 
-    tree = html.fromstring(page.text)
-
+    tree = html.fromstring(page_html)
     img = tree.xpath('//img/@src')
-
     links = tree.xpath('//a/@href')
-
     img_links = process_links(links)
 
     # sub_img = tree.xpath('//descendant-or-self::*[img]/img/@src')
@@ -63,8 +80,8 @@ def console_main():
     if not save_dir: #argument not given
         save_dir = "images"
     download_path = os.path.join(os.getcwd(), save_dir)
+    images = [urlparse.urljoin(page_url, url) for url in img]
 
-    images = [urlparse.urljoin(page.url, url) for url in img]
     #print img
     #print images
     # this does not work if the urls are relative
