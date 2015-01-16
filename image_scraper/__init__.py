@@ -22,7 +22,11 @@ def console_main():
     parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
     parser.add_argument('--max-images', type=int, default=1,
                         help="Limit on number of images")
+<<<<<<< HEAD
     parser.add_argument('-s', '--save-dir', type=str, default=None,
+=======
+    parser.add_argument('-s', '--save-dir', type=str, default=1,
+>>>>>>> c7b8c6c... Added option to save in custom directory
                         help="Directory in which images should be saved")
 
     args = parser.parse_args()
