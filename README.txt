@@ -29,14 +29,14 @@ If you dowload the tar:
 
 $cd ImageScraper/
 $python setup.py install
-$image-scraper --max-images 50 [url to scrap]
+$image-scraper --max-images 50 [url to scrape]
 
 
 If installed using pip:
 =======================
 Open python in terminal.
 
-$image-scraper --max-images 5 [url to scrap]
+$image-scraper --max-images 5 [url to scrape]
 
 
 

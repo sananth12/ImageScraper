@@ -33,7 +33,7 @@ If you run into problems in the compilation of ``lxml`` through ``pip``, install
 ```sh
 $cd ImageScraper/
 $python setup.py install
-$image-scraper [url to scrap]
+$image-scraper [url to scrape]
 
 ```
 
@@ -41,7 +41,7 @@ $image-scraper [url to scrap]
 Open python in terminal.
 
 ```sh
-$image-scraper --max-images 10 [url to scrap]
+$image-scraper --max-images 10 [url to scrape]
 
 ```
 
