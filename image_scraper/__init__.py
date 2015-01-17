@@ -22,7 +22,7 @@ def console_main():
     parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
     parser.add_argument('--max-images', type=int, default=1,
                         help="Limit on number of images")
-    parser.add_argument('-s', '--save-dir', type=str, default=1,
+    parser.add_argument('-s', '--save-dir', type=str, default=None,
                         help="Directory in which images should be saved")
 
     args = parser.parse_args()
@@ -56,7 +56,7 @@ def console_main():
     no_to_download = args.max_images
 
     save_dir = args.save_dir
-    if save_dir == 1: #argument not given
+    if not save_dir: #argument not given
         save_dir = "images"
     download_path = os.path.join(os.getcwd(), save_dir)
 
