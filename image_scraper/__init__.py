@@ -6,90 +6,21 @@ import urlparse
 import os
 from progressbar import *
 import argparse
-
-
-def process_links(links):
-    x = []
-    for l in links:
-        # TODO regular expressions
-        if l[-3:] == "jpg" or l[-3:] == "png" or l[-3:] == "gif" or l[-3:] == "svg" :
-                x.append(l)
-    return x
-
+from utils import process_links, get_html, get_img_list, download_image, process_download_path, get_arguments
 
 def console_main():
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
-    parser.add_argument('--max-images', type=int, default=1,
-                        help="Limit on number of images")
-    parser.add_argument('-s', '--save-dir', type=str, default="images",
-                        help="Directory in which images should be saved")
-    parser.add_argument('-g', '--injected', help="scrape injected images",
-                        action="store_true")
-
-    args = parser.parse_args()
-    
-    URL = args.url2scrape[0]
-
-    no_to_download = args.max_images
-
-    save_dir = args.save_dir
-
-    download_path = os.path.join(os.getcwd(), save_dir)
-
-    use_ghost = args.injected
+    URL, no_to_download, download_path, use_ghost = get_arguments()
 
     print "\n ImageScraper\n ============\n Requesting page....\n"
 
-    if use_ghost:
-        import selenium
-        import selenium.webdriver
-        driver = selenium.webdriver.PhantomJS(service_log_path=os.path.devnull)
-        driver.get(URL)
-        page_html = driver.page_source
-        page_url = driver.current_url
-        driver.quit()
-    else:
-        try:
-            page = requests.get(URL)
-            page_html= page.text
-            page_url = page.url
-        except requests.exceptions.MissingSchema:
-            URL = "http://" + URL 
-            page = requests.get(URL)
-            page_html= page.text
-            page_url = page.url
+    page_html, page_url = get_html(URL, use_ghost)
+    images = get_img_list(page_html, page_url)
 
-    tree = html.fromstring(page_html)
-    img = tree.xpath('//img/@src')
-    links = tree.xpath('//a/@href')
-    img_links = process_links(links)
-
-    img.extend(img_links)
-
-    if len(img) == 0:
+    if len(images) == 0:
         sys.exit("Sorry, no images found.")
-    
-    print "Found %s images: " % len(img)
+    print "Found %s images: " % len(images)
 
-    no_to_download = args.max_images
-
-    images = [urlparse.urljoin(page_url, url) for url in img]
-
-    # this does not work if the urls are relative
-    for x in range(0, len(img)):
-        if img[x][:4] != "http":
-            img[x] = "https:" + img[x]
-
-    #Checking if the path exists
-    if os.path.exists(download_path):
-        if not os.access(os.path.dirname(download_path), os.W_OK):
-            sys.exit("Sorry, the directory can't be accessed.")
-    elif os.access(os.path.dirname(download_path), os.W_OK):
-        os.makedirs(download_path)
-    else:
-        sys.exit("Sorry, the directory can't be created.")
+    process_download_path(download_path)
 
     count = 0
     percent = 0.0
@@ -99,17 +30,8 @@ def console_main():
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
 
     for img_url in images:
-        img_request = None
-        try:
-            img_request = requests.request('get', img_url)
-        except:
-            failed += 1
-            print "download of %s failed; status code %s" % \
-                  (img_url, img_request.status_code)
-            print "status : %s" % img_request.status_code
-        f = open(os.path.join(download_path,  img_url.split('/')[-1]), 'w')
-        f.write(img_request.content)
-        f.close()
+        if not download_image(img_url, download_path):
+            failed+=1
         count += 1
         percent = percent + 100.0 / no_to_download
         pbar.update(percent)
