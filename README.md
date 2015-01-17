@@ -16,8 +16,8 @@ Grab the latest build using **- Pip: [https://pypi.python.org/pypi/ImageScraper]
 You can also download using pip:
 ```sh
 $ pip install ImageScraper
-```
- 
+``` 
+
 Usage
 -----
 ```sh
@@ -33,7 +33,7 @@ If you run into problems in the compilation of ``lxml`` through ``pip``, install
 ```sh
 $cd ImageScraper/
 $python setup.py install
-$image-scraper [url to scrape]
+$image-scraper --max-images 10 [url to scrape]
 
 ```
 
