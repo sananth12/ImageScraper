@@ -18,6 +18,9 @@ def console_main():
 
     if len(images) == 0:
         sys.exit("Sorry, no images found.")
+    if no_to_download == 0:
+        no_to_download = len(images)
+
     print "Found %s images: " % len(images)
 
     process_download_path(download_path)
@@ -34,7 +37,7 @@ def console_main():
             failed+=1
         count += 1
         percent = percent + 100.0 / no_to_download
-        pbar.update(percent)
+        pbar.update(percent%100)
         if count == no_to_download:
             break
 
