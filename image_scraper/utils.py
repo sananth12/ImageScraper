@@ -72,6 +72,7 @@ def get_img_list(page_html, page_url, format_list):
     img_links = process_links(links, format_list)
     img_list.extend(img_links)
     images = [urlparse.urljoin(page_url, url) for url in img_list]
+    images = list( set(images) )
     return images
 
 def download_image(img_url, download_path):
