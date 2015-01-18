@@ -23,13 +23,16 @@ def get_arguments():
                         help="Directory in which images should be saved")
     parser.add_argument('-g', '--injected', help="scrape injected images",
                         action="store_true")
+    parser.add_argument('-f', '--formats', nargs="*", default=None,
+                        help="sepcify formats")
     args = parser.parse_args()
     URL = args.url2scrape[0]
     no_to_download = args.max_images
     save_dir = args.save_dir
     download_path = os.path.join(os.getcwd(), save_dir)
     use_ghost = args.injected
-    return (URL, no_to_download, download_path, use_ghost)
+    format_list = args.formats if args.formats else ["jpg", "png", "gif", "svg"]
+    return (URL, no_to_download, format_list, download_path, use_ghost)
 
 def process_download_path(download_path):
     if os.path.exists(download_path):
@@ -61,12 +64,12 @@ def get_html(URL, use_ghost):
             page_url = page.url
     return (page_html, page_url)
 
-def get_img_list(page_html, page_url):
+def get_img_list(page_html, page_url, format_list):
     tree = html.fromstring(page_html)
     img = tree.xpath('//img/@src')
     links = tree.xpath('//a/@href')
-    img_links = process_links(links)
-    img_list = process_links(img)
+    img_list = process_links(img, format_list)
+    img_links = process_links(links, format_list)
     img_list.extend(img_links)
     images = [urlparse.urljoin(page_url, url) for url in img_list]
     return images

@@ -9,12 +9,11 @@ import argparse
 from utils import process_links, get_html, get_img_list, download_image, process_download_path, get_arguments
 
 def console_main():
-    URL, no_to_download, download_path, use_ghost = get_arguments()
-
+    URL, no_to_download, format_list, download_path, use_ghost = get_arguments()
     print "\n ImageScraper\n ============\n Requesting page....\n"
 
     page_html, page_url = get_html(URL, use_ghost)
-    images = get_img_list(page_html, page_url)
+    images = get_img_list(page_html, page_url, format_list)
 
     if len(images) == 0:
         sys.exit("Sorry, no images found.")
