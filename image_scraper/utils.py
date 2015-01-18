@@ -6,11 +6,11 @@ import os
 from progressbar import *
 import argparse
 
-def process_links(links, formats=["jpg", "png", "gif", "svg"]):
+def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
     x = []
     for l in links:
         # TODO regular expressions
-        if l[-3:] in formats:
+        if os.path.splitext(l)[1][1:].strip().lower() in formats:
                 x.append(l)
     return x
 
