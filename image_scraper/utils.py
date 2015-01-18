@@ -6,18 +6,18 @@ import os
 from progressbar import *
 import argparse
 
-def process_links(links, formats=["jpg", "png", "gif", "svg"]):
+def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
     x = []
     for l in links:
         # TODO regular expressions
-        if l[-3:] in formats:
+        if os.path.splitext(l)[1][1:].strip().lower() in formats:
                 x.append(l)
     return x
 
 def get_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
-    parser.add_argument('--max-images', type=int, default=0,
+    parser.add_argument('-m', '--max-images', type=int, default=0,
                         help="Limit on number of images")
     parser.add_argument('-s', '--save-dir', type=str, default="images",
                         help="Directory in which images should be saved")
@@ -72,6 +72,7 @@ def get_img_list(page_html, page_url, format_list):
     img_links = process_links(links, format_list)
     img_list.extend(img_links)
     images = [urlparse.urljoin(page_url, url) for url in img_list]
+    images = list( set(images) )
     return images
 
 def download_image(img_url, download_path):
