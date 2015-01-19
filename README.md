@@ -4,7 +4,7 @@ A simple python script which downloads all images in the given webpage.
 
 | Build Status | Version | Downloads |
 | ------------ | ------- | ------------------- |
-| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-6587%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
+| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-6687%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
 
 
 Download
@@ -76,4 +76,9 @@ Contribute
 ----------
 If you want to add features, improve them, or report issues, feel free to send a pull request!!
 
-Special thanks to @osborne6 for making a proper CLI.  :)
+###Contributors
+
+- [sananth12](https://github.com/sananth12)
+- [srirams6](https://github.com/srirams6)
+- [osborne6](https://github.com/osborne6)
+- [vigneshmanix](https://github.com/vigneshmanix)
