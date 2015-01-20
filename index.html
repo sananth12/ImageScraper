@@ -1,1 +1,140 @@
-ImageScraper
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Imagescraper by srirams6</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Imagescraper</h1>
+        <p>:scissors: A python scraper which scraps images from a given webpage.</p>
+        <p class="view"><a href="https://github.com/srirams6/ImageScraper">View the Project on GitHub <small>srirams6/ImageScraper</small></a></p>
+        <ul>
+          <li><a href="https://github.com/srirams6/ImageScraper/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/srirams6/ImageScraper/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/srirams6/ImageScraper">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="imagescraper-scissors" class="anchor" href="#imagescraper-scissors" aria-hidden="true"><span class="octicon octicon-link"></span></a>ImageScraper <img class="emoji" title=":scissors:" alt=":scissors:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2702.png" height="20" width="20" align="absmiddle">
+</h1>
+
+<p>A simple python script which downloads all images in the given webpage.</p>
+
+<table>
+<thead>
+<tr>
+<th>Build Status</th>
+<th>Version</th>
+<th>Downloads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://travis-ci.org/sananth12/ImageScraper"><img src="https://travis-ci.org/sananth12/ImageScraper.svg?branch=master" alt="Build Status"></a></td>
+<td><a href="https://pypi.python.org/pypi/ImageScraper/"><img src="https://pypip.in/v/ImageScraper/badge.png" alt="Latest Version"></a></td>
+<td><a href="https://pypi.python.org/pypi/ImageScraper"><img src="http://img.shields.io/badge/downloads-6687%20total-blue.svg" alt="PyPi downloads"></a></td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<h3>
+<a id="tar-file" class="anchor" href="#tar-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>tar file:</h3>
+
+<p>Grab the latest build using <strong>- Pip: <a href="https://pypi.python.org/pypi/ImageScraper">https://pypi.python.org/pypi/ImageScraper</a></strong> </p>
+
+<h3>
+<a id="pip-install" class="anchor" href="#pip-install" aria-hidden="true"><span class="octicon octicon-link"></span></a>pip install</h3>
+
+<p>You can also download using pip:</p>
+
+<div class="highlight highlight-sh"><pre>$ pip install ImageScraper</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-sh"><pre>image-scraper [-h] [--max-images MAX_IMAGES] url2scrape</pre></div>
+
+<h3>
+<a id="if-you-downloaded-the-tar" class="anchor" href="#if-you-downloaded-the-tar" aria-hidden="true"><span class="octicon octicon-link"></span></a>If you downloaded the tar:</h3>
+
+<p>Extract the contents of the tar file.
+Note that <code>ImageScraper</code> depends on <code>lxml</code>. and <code>requests</code>. 
+If you run into problems in the compilation of <code>lxml</code> through <code>pip</code>, install the <code>libxml2-dev</code> and <code>libxslt-dev</code> packages on your system.</p>
+
+<div class="highlight highlight-sh"><pre><span class="pl-vo">$cd</span> ImageScraper/
+<span class="pl-vo">$python</span> setup.py install
+<span class="pl-vo">$image</span>-scraper --max-images 10 [url to scrape]
+</pre></div>
+
+<h3>
+<a id="if-installed-using-pip" class="anchor" href="#if-installed-using-pip" aria-hidden="true"><span class="octicon octicon-link"></span></a>If installed using pip:</h3>
+
+<p>Open python in terminal.</p>
+
+<div class="highlight highlight-sh"><pre><span class="pl-vo">$image</span>-scraper --max-images 10 [url to scrape]
+</pre></div>
+
+<h4>
+<a id="note" class="anchor" href="#note" aria-hidden="true"><span class="octicon octicon-link"></span></a>NOTE:</h4>
+
+<p>A new folder called "images" will be created in the same place, containing all the downloaded images.</p>
+
+<h2>
+<a id="upgrading" class="anchor" href="#upgrading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Upgrading</h2>
+
+<p>Check if a newer version if available  and upgrade using:</p>
+
+<div class="highlight highlight-sh"><pre>$ sudo  pip install ImageScraper --upgrade</pre></div>
+
+<h2>
+<a id="issues" class="anchor" href="#issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues</h2>
+
+<p>Q.)All images were not downloaded?</p>
+
+<p>It could be that the content was injected into the page via javascript and this scraper doesn't run javascript. </p>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Todo</h2>
+
+<p>Scraping sites which inject image tags via javascript, by using PhantomJS or Selenium.</p>
+
+<h2>
+<a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contribute</h2>
+
+<p>If you want to add features, improve them, or report issues, feel free to send a pull request!!</p>
+
+<h3>
+<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors</h3>
+
+<ul>
+<li><a href="https://github.com/sananth12">sananth12</a></li>
+<li><a href="https://github.com/srirams6">srirams6</a></li>
+<li><a href="https://github.com/osborne6">osborne6</a></li>
+<li><a href="https://github.com/vigneshmanix">vigneshmanix</a></li>
+</ul>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/srirams6">srirams6</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
