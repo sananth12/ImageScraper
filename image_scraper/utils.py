@@ -25,6 +25,8 @@ def get_arguments():
                         action="store_true")
     parser.add_argument('-f', '--formats', nargs="*", default=None,
                         help="sepcify formats")
+    parser.add_argument('--max-filesize', type=int, default=100000000,
+                        help="Limit on size of image in bytes")
     args = parser.parse_args()
     URL = args.url2scrape[0]
     no_to_download = args.max_images
@@ -32,7 +34,8 @@ def get_arguments():
     download_path = os.path.join(os.getcwd(), save_dir)
     use_ghost = args.injected
     format_list = args.formats if args.formats else ["jpg", "png", "gif", "svg"]
-    return (URL, no_to_download, format_list, download_path, use_ghost)
+    max_filesize = args.max_filesize
+    return (URL, no_to_download, format_list, download_path, max_filesize, use_ghost)
 
 def process_download_path(download_path):
     if os.path.exists(download_path):
@@ -75,17 +78,24 @@ def get_img_list(page_html, page_url, format_list):
     images = list( set(images) )
     return images
 
-def download_image(img_url, download_path):
+def download_image(img_url, download_path, max_filesize):
     img_request = None
     success_flag=True
+    size_success_flag = True
     try:
-        img_request = requests.request('get', img_url)
+        img_request = requests.request('get', img_url, stream=True)
     except:
         success_flag=False
         print "download of %s failed; status code %s" % \
               (img_url, img_request.status_code)
         print "status : %s" % img_request.status_code
-    f = open(os.path.join(download_path,  img_url.split('/')[-1]), 'w')
-    f.write(img_request.content)
-    f.close()
-    return success_flag
+        return success_flag
+    if int(img_request.headers['content-length']) < max_filesize:
+        img_content = img_request.content
+        f = open(os.path.join(download_path,  img_url.split('/')[-1]), 'w')
+        f.write(img_content)
+        f.close()
+    else:
+        success_flag = False
+        size_success_flag = False
+    return success_flag, size_success_flag
