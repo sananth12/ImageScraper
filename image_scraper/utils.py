@@ -3,7 +3,6 @@ from lxml import html
 import requests
 import urlparse
 import os
-from progressbar import *
 import argparse
 
 def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
