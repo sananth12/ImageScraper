@@ -9,7 +9,7 @@ import argparse
 from utils import process_links, get_html, get_img_list, download_image, process_download_path, get_arguments
 
 def console_main():
-    URL, no_to_download, format_list, download_path, max_filesize, use_ghost = get_arguments()
+    URL, no_to_download, format_list, download_path, max_filesize, dump_urls, use_ghost = get_arguments()
     print "\n ImageScraper\n ============\n Requesting page....\n"
 
     page_html, page_url = get_html(URL, use_ghost)
@@ -23,6 +23,10 @@ def console_main():
     print "Found %s images: " % len(images)
 
     process_download_path(download_path)
+
+    for img_url in images:
+        if dump_urls:
+            print img_url
 
     count = 0
     percent = 0.0
