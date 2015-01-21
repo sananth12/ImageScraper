@@ -3,7 +3,6 @@ from lxml import html
 import requests
 import urlparse
 import os
-from progressbar import *
 import argparse
 
 def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
@@ -27,6 +26,9 @@ def get_arguments():
                         help="sepcify formats")
     parser.add_argument('--max-filesize', type=int, default=100000000,
                         help="Limit on size of image in bytes")
+    parser.add_argument('--dump-urls', default=False,
+                        help="Print the URLs of the images",
+                        action="store_true")
     args = parser.parse_args()
     URL = args.url2scrape[0]
     no_to_download = args.max_images
@@ -35,7 +37,8 @@ def get_arguments():
     use_ghost = args.injected
     format_list = args.formats if args.formats else ["jpg", "png", "gif", "svg"]
     max_filesize = args.max_filesize
-    return (URL, no_to_download, format_list, download_path, max_filesize, use_ghost)
+    dump_urls = args.dump_urls
+    return (URL, no_to_download, format_list, download_path, max_filesize, dump_urls, use_ghost)
 
 def process_download_path(download_path):
     if os.path.exists(download_path):
