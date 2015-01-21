@@ -1,11 +1,6 @@
 
 import sys
-from lxml import html
-import requests
-import urlparse
-import os
 from progressbar import *
-import argparse
 from utils import process_links, get_html, get_img_list, download_image, process_download_path, get_arguments
 
 def console_main():
