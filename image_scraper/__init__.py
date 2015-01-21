@@ -1,10 +1,14 @@
 
 import sys
 from progressbar import *
+import StringIO
 from utils import process_links, get_html, get_img_list, download_image, process_download_path, get_arguments
 
 def console_main():
-    URL, no_to_download, format_list, download_path, max_filesize, dump_urls, use_ghost = get_arguments()
+    URL, no_to_download, format_list, download_path, max_filesize, dump_urls, quiet, use_ghost = get_arguments()
+    if quiet:
+        actualstdout = sys.stdout
+        sys.stdout = StringIO.StringIO()
     print "\n ImageScraper\n ============\n Requesting page....\n"
 
     page_html, page_url = get_html(URL, use_ghost)
@@ -29,7 +33,8 @@ def console_main():
     over_max_filesize = 0
     widgets = ['Progress: ', Percentage(), ' ', Bar(marker=RotatingMarker()),
                ' ', ETA(), ' ', FileTransferSpeed()]
-    pbar = ProgressBar(widgets=widgets, maxval=100).start()
+    if not quiet:
+        pbar = ProgressBar(widgets=widgets, maxval=100).start()
 
     for img_url in images:
         flag, size_flag = download_image(img_url, download_path, max_filesize)
@@ -40,10 +45,15 @@ def console_main():
                 over_max_filesize += 1
         count += 1
         percent = percent + 100.0 / no_to_download
-        pbar.update(percent%100)
+        if not quiet:
+            pbar.update(percent%100)
         if count == no_to_download:
             break
 
-    pbar.finish()
     print "\nDone!\nDownloaded %s images" % (count - failed - over_max_filesize)
     return
+    if quiet:
+        sys.stdout = actualstdout
+        sys.stdout.flush()
+    else:
+        pbar.finish()

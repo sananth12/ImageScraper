@@ -29,6 +29,8 @@ def get_arguments():
     parser.add_argument('--dump-urls', default=False,
                         help="Print the URLs of the images",
                         action="store_true")
+    parser.add_argument('-q', '--quiet', help="no printing", default=False,
+                        action="store_true")
     args = parser.parse_args()
     URL = args.url2scrape[0]
     no_to_download = args.max_images
@@ -38,7 +40,8 @@ def get_arguments():
     format_list = args.formats if args.formats else ["jpg", "png", "gif", "svg"]
     max_filesize = args.max_filesize
     dump_urls = args.dump_urls
-    return (URL, no_to_download, format_list, download_path, max_filesize, dump_urls, use_ghost)
+    quiet = args.quiet
+    return (URL, no_to_download, format_list, download_path, max_filesize, dump_urls, quiet, use_ghost)
 
 def process_download_path(download_path):
     if os.path.exists(download_path):
