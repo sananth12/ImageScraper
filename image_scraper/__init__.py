@@ -1,7 +1,9 @@
 
 import sys
 from progressbar import *
-from utils import process_links, get_html, get_img_list, download_image, process_download_path, get_arguments
+from utils import (process_links, get_html, get_img_list, download_image,
+                   process_download_path, get_arguments)
+
 
 def console_main():
     URL, no_to_download, format_list, download_path, max_filesize, dump_urls, use_ghost = get_arguments()
@@ -40,10 +42,10 @@ def console_main():
                 over_max_filesize += 1
         count += 1
         percent = percent + 100.0 / no_to_download
-        pbar.update(percent%100)
+        pbar.update(percent % 100)
         if count == no_to_download:
             break
 
     pbar.finish()
-    print "\nDone!\nDownloaded %s images" % (count - failed - over_max_filesize)
+    print "\nDone!\nDownloaded %s images" % (count-failed-over_max_filesize)
     return

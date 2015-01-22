@@ -5,6 +5,7 @@ import urlparse
 import os
 import argparse
 
+
 def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
     x = []
     for l in links:
@@ -12,6 +13,7 @@ def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
         if os.path.splitext(l)[1][1:].strip().lower() in formats:
                 x.append(l)
     return x
+
 
 def get_arguments():
     parser = argparse.ArgumentParser()
@@ -38,7 +40,9 @@ def get_arguments():
     format_list = args.formats if args.formats else ["jpg", "png", "gif", "svg"]
     max_filesize = args.max_filesize
     dump_urls = args.dump_urls
-    return (URL, no_to_download, format_list, download_path, max_filesize, dump_urls, use_ghost)
+    return (URL, no_to_download, format_list, download_path, max_filesize,
+            dump_urls, use_ghost)
+
 
 def process_download_path(download_path):
     if os.path.exists(download_path):
@@ -48,6 +52,7 @@ def process_download_path(download_path):
         os.makedirs(download_path)
     else:
         sys.exit("Sorry, the directory can't be created.")
+
 
 def get_html(URL, use_ghost):
     if use_ghost:
@@ -66,9 +71,10 @@ def get_html(URL, use_ghost):
             URL = "http://" + URL
             page = requests.get(URL)
         finally:
-            page_html= page.text
+            page_html = page.text
             page_url = page.url
     return (page_html, page_url)
+
 
 def get_img_list(page_html, page_url, format_list):
     tree = html.fromstring(page_html)
@@ -78,17 +84,18 @@ def get_img_list(page_html, page_url, format_list):
     img_links = process_links(links, format_list)
     img_list.extend(img_links)
     images = [urlparse.urljoin(page_url, url) for url in img_list]
-    images = list( set(images) )
+    images = list(set(images))
     return images
+
 
 def download_image(img_url, download_path, max_filesize):
     img_request = None
-    success_flag=True
+    success_flag = True
     size_success_flag = True
     try:
         img_request = requests.request('get', img_url, stream=True)
     except:
-        success_flag=False
+        success_flag = False
         print "download of %s failed; status code %s" % \
               (img_url, img_request.status_code)
         print "status : %s" % img_request.status_code
