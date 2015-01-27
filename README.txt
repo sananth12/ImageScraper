@@ -41,7 +41,7 @@ $image-scraper --max-images 5 [url to scrape]
 
 
 NOTE:
-A new folder called "images" will be created in the same place, containing all the downloaded images.
+A new folder called "images" will be created in the same place, containing all the downloaded images, if -f argument was not supplied.
 
 
 Upgrading
