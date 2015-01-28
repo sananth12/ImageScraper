@@ -21,7 +21,7 @@ $ pip install ImageScraper
 Usage
 -----
 ```sh
-image-scraper [-h] [--max-images MAX_IMAGES] [-f] [-g] url2scrape
+image-scraper [-h] [--max-images MAX_IMAGES] [-f FORMATS] [-g] url2scrape
 ```
 
 ###If you downloaded the tar:
