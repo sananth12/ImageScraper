@@ -1,4 +1,4 @@
-#from distutils.core import setup
+
 from setuptools import setup
 setup(name='ImageScraper',
       version='2.0.3',
@@ -21,6 +21,5 @@ setup(name='ImageScraper',
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Topic :: Utilities',
-    ],
-  
-      )
+    ],  
+ )
