@@ -14,9 +14,20 @@ $pip install ImageScraper
  
 Usage
 -----
-+----------------------------------------------------------------------+
-| image-scraper [-h] [--max-images MAX_IMAGES] [-g] [-f] url_to_scrape |
-+----------------------------------------------------------------------+
++----------------------------------------+
+| image-scraper [OPTIONS]  url_to_scrape |
++----------------------------------------+
+
+Options
+-------
+
+-h, --help                      Print help
+-m, --max-images <number>       Maximum number images to be scraped
+-s, --save-dir  <path>          Name of the folder to save the images (default: ./images)
+-g, --injected			Scrape injected images (using selenium)
+--max-filesize  <size>          Limit on size of image in bytes (default: 100000000)
+--dump-urls                     Print the URLs of the images
+
 
 Using the tar file:
 

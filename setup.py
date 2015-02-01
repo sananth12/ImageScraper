@@ -1,7 +1,7 @@
 
 from setuptools import setup
 setup(name='ImageScraper',
-      version='2.0.3',
+      version='2.1.0',
     install_requires=['lxml', 'requests'],
     author='Anantha Natarajan S',
     author_email='sananthanatarajan12@gmail.com',

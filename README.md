@@ -21,7 +21,17 @@ $ pip install ImageScraper
 Usage
 -----
 ```sh
-image-scraper [-h] [--max-images MAX_IMAGES] [-f FORMATS] [-g] url2scrape
+image-scraper [OPTIONS] URL
+```
+
+Options
+-------
+```sh
+-h, --help			Print help
+-m, --max-images <number>	Maximum number images to be scraped
+-s, --save-dir	<path>		Name of the folder to save the images (default: ./images)
+--max-filesize	<size>		Limit on size of image in bytes (default: 100000000)
+--dump-urls			Print the URLs of the images
 ```
 
 ###If you downloaded the tar:
@@ -66,11 +76,6 @@ Q.)All images were not downloaded?
 
 It could be that the content was injected into the page via javascript and this scraper doesn't run javascript. 
  
-
-Todo
-----
-Scraping sites which inject image tags via javascript, by using PhantomJS or Selenium.
-
 
 Contribute
 ----------
