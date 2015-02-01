@@ -27,11 +27,11 @@ image-scraper [OPTIONS] URL
 Options
 -------
 ```sh
--h, --help			Print help
+-h, --help				Print help
 -m, --max-images <number>	Maximum number images to be scraped
 -s, --save-dir	<path>		Name of the folder to save the images (default: ./images)
 --max-filesize	<size>		Limit on size of image in bytes (default: 100000000)
---dump-urls			Print the URLs of the images
+--dump-urls			      Print the URLs of the images
 ```
 
 ###If you downloaded the tar:
