@@ -24,8 +24,6 @@ def get_arguments():
                         help="Directory in which images should be saved")
     parser.add_argument('-g', '--injected', help="scrape injected images",
                         action="store_true")
-    parser.add_argument('-f', '--formats', nargs="*", default=None,
-                        help="sepcify formats")
     parser.add_argument('--max-filesize', type=int, default=100000000,
                         help="Limit on size of image in bytes")
     parser.add_argument('--dump-urls', default=False,
@@ -37,7 +35,7 @@ def get_arguments():
     save_dir = args.save_dir
     download_path = os.path.join(os.getcwd(), save_dir)
     use_ghost = args.injected
-    format_list = args.formats if args.formats else ["jpg", "png", "gif", "svg"]
+    format_list = ["jpg", "png", "gif", "svg", "jpeg"]
     max_filesize = args.max_filesize
     dump_urls = args.dump_urls
     return (URL, no_to_download, format_list, download_path, max_filesize,
