@@ -17,6 +17,9 @@ You can also download using pip:
 ```sh
 $ pip install ImageScraper
 ``` 
+####Dependencies
+Note that ``ImageScraper`` depends on ``lxml``. and ``requests``. 
+If you run into problems in the compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and ``libxslt-dev`` packages on your system.
 
 Usage
 -----
@@ -36,8 +39,6 @@ Options
 
 ###If you downloaded the tar:
 Extract the contents of the tar file.
-Note that ``ImageScraper`` depends on ``lxml``. and ``requests``. 
-If you run into problems in the compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and ``libxslt-dev`` packages on your system.
 
 
 ```sh
