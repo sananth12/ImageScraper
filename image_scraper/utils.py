@@ -4,6 +4,7 @@ import requests
 import urlparse
 import os
 import argparse
+import re
 
 
 def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
@@ -31,8 +32,10 @@ def get_arguments():
                         action="store_true")
     args = parser.parse_args()
     URL = args.url2scrape[0]
+    if not re.match(r'^[a-zA-Z]+://', URL):
+        URL = 'http://' + URL
     no_to_download = args.max_images
-    save_dir = args.save_dir
+    save_dir = args.save_dir + '_{uri.netloc}'.format(uri=urlparse.urlparse(URL))
     download_path = os.path.join(os.getcwd(), save_dir)
     use_ghost = args.injected
     format_list = ["jpg", "png", "gif", "svg", "jpeg"]
