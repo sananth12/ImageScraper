@@ -32,7 +32,7 @@ Options
 ```sh
 -h, --help                      Print help
 -m, --max-images <number>       Maximum number images to be scraped
--s, --save-dir	<path>          Name of the folder to save the images (default: ./images_<domain>)
+-s, --save-dir	<path>          Name of the folder to save the images (default: ./images)
 --max-filesize	<size>          Limit on size of image in bytes (default: 100000000)
 --dump-urls                     Print the URLs of the images
 ```
@@ -58,7 +58,7 @@ $image-scraper --max-images 10 [url to scrape]
 
 
 ####NOTE:
-A new folder called "images_<domain>" will be created in the same place, containing all the downloaded images.
+A new folder called "images" will be created in the same place, containing all the downloaded images.
 
 
 Upgrading

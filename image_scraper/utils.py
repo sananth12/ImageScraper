@@ -32,7 +32,7 @@ def get_arguments():
     args = parser.parse_args()
     URL = args.url2scrape[0]
     no_to_download = args.max_images
-    save_dir = args.save_dir + '_{uri.netloc}'.format(uri=urlparse.urlparse(URL))
+    save_dir = args.save_dir
     download_path = os.path.join(os.getcwd(), save_dir)
     use_ghost = args.injected
     format_list = ["jpg", "png", "gif", "svg", "jpeg"]
