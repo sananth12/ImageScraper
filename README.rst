@@ -3,12 +3,6 @@ A cool command line app  which downloads all images in the given webpage.
 Download
 --------
 
-tar file:
-~~~~~~~~~
-
-Grab the latest build using **- Pip:
-https://pypi.python.org/pypi/ImageScraper**
-
 pip install
 ~~~~~~~~~~~
 
