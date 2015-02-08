@@ -24,7 +24,7 @@ If you run into problems in the compilation of ``lxml`` through ``pip``, install
 Usage
 -----
 ```sh
-image-scraper [OPTIONS] URL
+$ image-scraper [OPTIONS] URL
 ```
 
 Options
