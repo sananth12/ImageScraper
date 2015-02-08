@@ -32,7 +32,7 @@ Options
 
     -h, --help                      Print help
     -m, --max-images <number>       Maximum number images to be scraped
-    -s, --save-dir  <path>          Name of the folder to save the images (default: ./images)
+    -s, --save-dir  <path>          Name of the folder to save the images (default: ./images_<domain>)
     --max-filesize  <size>          Limit on size of image in bytes (default: 100000000)
     --dump-urls                     Print the URLs of the images
 
@@ -62,6 +62,6 @@ Open python in terminal.
 NOTE:
 ^^^^^
 
-A new folder called "images" will be created in the same place,
+A new folder called "images_<domain>" will be created in the same place,
 containing all the downloaded images.
 
