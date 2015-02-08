@@ -1,13 +1,4 @@
-ImageScraper :page\_with\_curl:
-===============================
-
-A simple python script which downloads all images in the given webpage.
-
-+------------------+--------------------+--------------------+
-| Build Status     | Version            | Downloads          |
-+==================+====================+====================+
-| |Build Status|   | |Latest Version|   | |PyPi downloads|   |
-+------------------+--------------------+--------------------+
+A cool command line app  which downloads all images in the given webpage. 
 
 Download
 --------
@@ -74,11 +65,3 @@ NOTE:
 A new folder called "images" will be created in the same place,
 containing all the downloaded images.
 
-
-
-.. |Build Status| image:: https://travis-ci.org/sananth12/ImageScraper.svg?branch=master
-   :target: https://travis-ci.org/sananth12/ImageScraper
-.. |Latest Version| image:: https://pypip.in/v/ImageScraper/badge.png
-   :target: https://pypi.python.org/pypi/ImageScraper/
-.. |PyPi downloads| image:: http://img.shields.io/badge/downloads-6967%20total-blue.svg
-   :target: https://pypi.python.org/pypi/ImageScraper
