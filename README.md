@@ -1,6 +1,6 @@
 ImageScraper :page_with_curl:
 ============
-A simple python script which downloads all images in the given webpage.
+A cool command line tool which downloads all images in the given webpage.
 
 | Build Status | Version | Downloads |
 | ------------ | ------- | ------------------- |
