@@ -12,12 +12,12 @@ Download
 ###tar file:
 Grab the latest build using **- Pip: [https://pypi.python.org/pypi/ImageScraper](https://pypi.python.org/pypi/ImageScraper)** 
 
-###pip install
+###pip install(recomended)
 You can also download using pip:
 ```sh
 $ pip install ImageScraper
 ``` 
-####Dependencies
+####**Dependencies**
 Note that ``ImageScraper`` depends on ``lxml`` and ``requests``. 
 If you run into problems in the compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and ``libxslt-dev`` packages on your system.
 
