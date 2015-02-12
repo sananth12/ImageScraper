@@ -12,7 +12,7 @@ Download
 ###tar file:
 Grab the latest build using **- Pip: [https://pypi.python.org/pypi/ImageScraper](https://pypi.python.org/pypi/ImageScraper)** 
 
-###pip install(recomended)
+###pip install(recommended)
 You can also download using pip:
 ```sh
 $ pip install ImageScraper
