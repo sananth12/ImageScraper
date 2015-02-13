@@ -3,7 +3,7 @@ A cool command line app  which downloads all images in the given webpage.
 Download
 --------
 
-pip install
+pip install (Recommended)
 ~~~~~~~~~~~
 
 You can also download using pip:
@@ -11,6 +11,14 @@ You can also download using pip:
 .. code:: sh
 
     $ pip install ImageScraper
+
+NOTE
+----
+Note that ``ImageScraper`` depends
+on ``lxml``. and ``requests``. If you run into problems in the
+compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and
+``libxslt-dev`` packages on your system.
+
 
 Usage
 -----
@@ -33,10 +41,7 @@ Options
 If you downloaded the tar:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Extract the contents of the tar file. Note that ``ImageScraper`` depends
-on ``lxml``. and ``requests``. If you run into problems in the
-compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and
-``libxslt-dev`` packages on your system.
+Extract the contents of the tar file. 
 
 .. code:: sh
 
