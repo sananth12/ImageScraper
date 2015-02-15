@@ -7,7 +7,7 @@ from utils import (process_links, get_html, get_img_list, download_image,
 
 def console_main():
     URL, no_to_download, format_list, download_path, max_filesize, dump_urls, use_ghost = get_arguments()
-    print "\n ImageScraper\n ============\n Requesting page....\n"
+    print "\nImageScraper\n============\nRequesting page....\n"
 
     page_html, page_url = get_html(URL, use_ghost)
     images = get_img_list(page_html, page_url, format_list)

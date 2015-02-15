@@ -10,20 +10,19 @@ import re
 def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
     x = []
     for l in links:
-        # TODO regular expressions
         if os.path.splitext(l)[1][1:].strip().lower() in formats:
                 x.append(l)
     return x
 
 
 def get_arguments():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Dowloads images form given URL')
     parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
     parser.add_argument('-m', '--max-images', type=int, default=0,
-                        help="Limit on number of images")
+                        help="Limit on number of images\n")
     parser.add_argument('-s', '--save-dir', type=str, default="images",
                         help="Directory in which images should be saved")
-    parser.add_argument('-g', '--injected', help="scrape injected images",
+    parser.add_argument('-g', '--injected', help="Scrape injected images",
                         action="store_true")
     parser.add_argument('--max-filesize', type=int, default=100000000,
                         help="Limit on size of image in bytes")
@@ -36,6 +35,8 @@ def get_arguments():
         URL = 'http://' + URL
     no_to_download = args.max_images
     save_dir = args.save_dir + '_{uri.netloc}'.format(uri=urlparse.urlparse(URL))
+    if args.save_dir != "images":
+        save_dir = args.save_dir
     download_path = os.path.join(os.getcwd(), save_dir)
     use_ghost = args.injected
     format_list = ["jpg", "png", "gif", "svg", "jpeg"]
