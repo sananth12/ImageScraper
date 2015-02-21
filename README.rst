@@ -83,7 +83,7 @@ Check if a newer version if available and upgrade using:
     $ sudo  pip install ImageScraper --upgrade
 
 
-.. |Build Status| image:: https://travis-ci.org/sananth12/ImageScraper.svg?branch=master
+.. |Build Status| image:: https://travis-ci.org/sananth12/ImageScraper.svg?branch=travis-branch
    :target: https://travis-ci.org/sananth12/ImageScraper
 .. |Latest Version| image:: https://pypip.in/v/ImageScraper/badge.png
    :target: https://pypi.python.org/pypi/ImageScraper/
