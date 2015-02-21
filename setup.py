@@ -1,8 +1,11 @@
 
-from setuptools import setup
+try:
+        from setuptools import setup
+except ImportError:
+        from distutils.core import setup
 
 setup(name='ImageScraper',
-      version='2.0.5',
+    version='2.0.5',
     install_requires=['lxml', 'requests'],
     author='Anantha Natarajan S',
     author_email='sananthanatarajan12@gmail.com',
@@ -21,6 +24,6 @@ setup(name='ImageScraper',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
-        'Topic :: Utilities',
+        'Topic :: Utilities'
     ],  
  )
