@@ -61,15 +61,6 @@ $image-scraper --max-images 10 [url to scrape]
 A new folder called "images_<domain>" will be created in the same place, containing all the downloaded images.
 
 
-Upgrading
----------
-
-Check if a newer version if available  and upgrade using:
-
-```sh
-$ sudo  pip install ImageScraper --upgrade
-```
-
 Issues
 ------
 
