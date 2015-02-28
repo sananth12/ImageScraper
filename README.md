@@ -10,7 +10,7 @@ A cool command line tool which downloads all images in the given webpage.
 Download
 --------
 ###tar file:
-Grab the latest stable build using **- Pip: [https://pypi.python.org/pypi/ImageScraper](https://pypi.python.org/pypi/ImageScraper)** 
+Grab the latest stable build from **- Pip: [https://pypi.python.org/pypi/ImageScraper](https://pypi.python.org/pypi/ImageScraper)** 
 
 ###pip install (recommended):
 You can also download using pip:
