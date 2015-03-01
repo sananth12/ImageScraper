@@ -79,3 +79,7 @@ If you want to add features, improve them, or report issues, feel free to send a
 - [srirams6](https://github.com/srirams6)
 - [osborne6](https://github.com/osborne6)
 - [vigneshmanix](https://github.com/vigneshmanix)
+
+
+License
+-------
