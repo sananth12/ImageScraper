@@ -1,7 +1,5 @@
-images/
 build/
 dist/
 ImageScraper.egg-info/
 *pyc
 rstmake.sh
-tty2*
