@@ -83,4 +83,4 @@ If you want to add features, improve them, or report issues, feel free to send a
 
 License
 -------
-![alt tag](https://raw.githubusercontent.com/sananth12/ImageScraper/master/gpl.png)
+![alt tag](https://raw.githubusercontent.com/sananth12/ImageScraper/master/images/gpl.png)
