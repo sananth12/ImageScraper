@@ -1,4 +1,3 @@
-
 def console_main():
     import sys
     from progressbar import *
@@ -19,8 +18,8 @@ def console_main():
 
     process_download_path(download_path)
 
-    for img_url in images:
-        if dump_urls:
+    if dump_urls:
+        for img_url in images:
             print img_url
 
     count = 0
