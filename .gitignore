@@ -3,3 +3,4 @@ dist/
 ImageScraper.egg-info/
 *pyc
 rstmake.sh
+grip
