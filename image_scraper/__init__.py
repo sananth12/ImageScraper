@@ -1,11 +1,9 @@
 
-import sys
-from progressbar import *
-from utils import (process_links, get_html, get_img_list, download_image,
-                   process_download_path, get_arguments)
-
-
 def console_main():
+    import sys
+    from progressbar import *
+    from utils import (process_links, get_html, get_img_list, download_image,
+                       process_download_path, get_arguments)
     URL, no_to_download, format_list, download_path, max_filesize, dump_urls, use_ghost = get_arguments()
     print "\nImageScraper\n============\nRequesting page....\n"
 
