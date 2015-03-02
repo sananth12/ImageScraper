@@ -6,6 +6,7 @@ A cool command line tool which downloads all images in the given webpage.
 | ------------ | ------- | ------------------- |
 | [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-7.3k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
 
+Click [here](http://showterm.io/d3aef5bc3f37cd49757d1#fast) to see it in action!
 
 Download
 --------
@@ -83,4 +84,4 @@ If you want to add features, improve them, or report issues, feel free to send a
 
 License
 -------
-![alt tag](https://raw.githubusercontent.com/sananth12/ImageScraper/master/images/gpl.png)
+![GPL V3](https://raw.githubusercontent.com/sananth12/ImageScraper/master/images/gpl.png)
