@@ -49,11 +49,12 @@ def get_arguments():
 def process_download_path(download_path):
     if os.path.exists(download_path):
         if not os.access(download_path, os.W_OK):
-            sys.exit("Sorry, the directory can't be accessed.")
+            return False, "Sorry, the directory can't be accessed."
     elif os.access(os.path.dirname(download_path), os.W_OK):
         os.makedirs(download_path)
     else:
-        sys.exit("Sorry, the directory can't be created.")
+        return False, "Sorry, the directory can't be created."
+    return True, ""
 
 
 def get_html(URL, use_ghost):
