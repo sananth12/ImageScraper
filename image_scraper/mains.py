@@ -1,8 +1,8 @@
 def console_main():
     import sys
     from progressbar import *
-    from utils import (process_links, get_html, get_img_list, download_image,
-                       process_download_path, get_arguments)
+    from utils import (process_links, get_html, get_img_list,
+                       download_image, process_download_path, get_arguments)
     URL, no_to_download, format_list, download_path, max_filesize, dump_urls, scrape_reverse, use_ghost = get_arguments()
     print "\nImageScraper\n============\nRequesting page....\n"
 
@@ -16,7 +16,8 @@ def console_main():
 
     print "Found %s images: " % len(images)
 
-    download_path_flag, download_path_msg = process_download_path(download_path)
+    download_path_flag, download_path_msg =
+    process_download_path(download_path)
     if not download_path_flag:
         sys.exit(download_path_msg)
 
@@ -52,8 +53,13 @@ def console_main():
     print "\nDone!\nDownloaded %s images" % (count-failed-over_max_filesize)
     return
 
-def scrape_images(url, no_to_download=0, format_list=["jpg", "png", "gif", "svg", "jpeg"], download_path='images', max_filesize=100000000, dump_urls=False, use_ghost=False):
-    import sys, os
+
+def scrape_images(url, no_to_download=0,
+                  format_list=["jpg", "png", "gif", "svg", "jpeg"],
+                  download_path='images', max_filesize=100000000,
+                  dump_urls=False, use_ghost=False):
+    import sys
+    import os
     from utils import (process_links, get_html, get_img_list, download_image,
                        process_download_path, get_arguments)
     page_html, page_url = get_html(url, use_ghost)
@@ -85,4 +91,3 @@ def scrape_images(url, no_to_download=0, format_list=["jpg", "png", "gif", "svg"
         if count == no_to_download:
             break
     return count, failed
-
