@@ -29,6 +29,9 @@ def get_arguments():
     parser.add_argument('--dump-urls', default=False,
                         help="Print the URLs of the images",
                         action="store_true")
+    parser.add_argument('--scrape-reverse', default=False,
+                        help="Scrape the images in reverse order",
+                        action="store_true")
     args = parser.parse_args()
     URL = args.url2scrape[0]
     if not re.match(r'^[a-zA-Z]+://', URL):
@@ -42,8 +45,9 @@ def get_arguments():
     format_list = ["jpg", "png", "gif", "svg", "jpeg"]
     max_filesize = args.max_filesize
     dump_urls = args.dump_urls
+    scrape_reverse = args.scrape_reverse
     return (URL, no_to_download, format_list, download_path, max_filesize,
-            dump_urls, use_ghost)
+            dump_urls, scrape_reverse, use_ghost)
 
 
 def process_download_path(download_path):
