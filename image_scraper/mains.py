@@ -16,8 +16,7 @@ def console_main():
 
     print "Found %s images: " % len(images)
 
-    download_path_flag, download_path_msg =
-    process_download_path(download_path)
+    download_path_flag, download_path_msg = process_download_path(download_path)
     if not download_path_flag:
         sys.exit(download_path_msg)
 
