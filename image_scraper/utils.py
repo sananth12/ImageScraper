@@ -16,7 +16,8 @@ def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
 
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description='Dowloads images form given URL')
+    parser = argparse.ArgumentParser(
+        description='Dowloads images form given URL')
     parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
     parser.add_argument('-m', '--max-images', type=int, default=0,
                         help="Limit on number of images\n")
@@ -37,7 +38,8 @@ def get_arguments():
     if not re.match(r'^[a-zA-Z]+://', URL):
         URL = 'http://' + URL
     no_to_download = args.max_images
-    save_dir = args.save_dir + '_{uri.netloc}'.format(uri=urlparse.urlparse(URL))
+    save_dir = args.save_dir + '_{uri.netloc}'.format(
+        uri=urlparse.urlparse(URL))
     if args.save_dir != "images":
         save_dir = args.save_dir
     download_path = os.path.join(os.getcwd(), save_dir)
