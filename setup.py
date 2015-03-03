@@ -15,7 +15,7 @@ setup(name='ImageScraper',
         },
     test_suite='tests',
     url='https://github.com/sananth12/ImageScraper/',
-    description='A simple image scraper to download all  images from a given url',
+    description='A simple image scraper to download all images from a given url',
     classifiers=[
         'Operating System :: POSIX',
         'Programming Language :: Python',

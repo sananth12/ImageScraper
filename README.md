@@ -27,6 +27,11 @@ Usage
 ```sh
 $ image-scraper [OPTIONS] URL
 ```
+You can also use it in your python scripts.
+```py
+import image_scraper
+image_scraper.scrape_image(URL)
+```
 
 Options
 -------
