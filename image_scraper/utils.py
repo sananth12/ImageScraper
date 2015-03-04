@@ -111,9 +111,8 @@ def download_image(img_url, download_path, max_filesize):
         return success_flag
     if int(img_request.headers['content-length']) < max_filesize:
         img_content = img_request.content
-        f = open(os.path.join(download_path,  img_url.split('/')[-1]), 'w')
-        f.write(img_content)
-        f.close()
+        with open(os.path.join(download_path,  img_url.split('/')[-1]), 'w') as f:
+            f.write(img_content)
     else:
         success_flag = False
         size_success_flag = False
