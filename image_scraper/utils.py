@@ -30,6 +30,8 @@ def get_arguments():
     parser.add_argument('--dump-urls', default=False,
                         help="Print the URLs of the images",
                         action="store_true")
+    parser.add_argument('--formats', nargs="*", default=None,
+                        help="sepcify formats in a list without any seperator. This arguent must be after the url.")
     parser.add_argument('--scrape-reverse', default=False,
                         help="Scrape the images in reverse order",
                         action="store_true")
@@ -44,7 +46,7 @@ def get_arguments():
         save_dir = args.save_dir
     download_path = os.path.join(os.getcwd(), save_dir)
     use_ghost = args.injected
-    format_list = ["jpg", "png", "gif", "svg", "jpeg"]
+    format_list = args.formats if args.formats else ["jpg", "png", "gif", "svg", "jpeg"]
     max_filesize = args.max_filesize
     dump_urls = args.dump_urls
     scrape_reverse = args.scrape_reverse
