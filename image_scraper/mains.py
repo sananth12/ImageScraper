@@ -77,9 +77,7 @@ def scrape_images(url, no_to_download=0,
     if no_to_download == 0:
         no_to_download = len(images)
 
-    download_path_flag, download_path_msg = process_download_path(download_path)
-    if not download_path_flag:
-        sys.exit(download_path_msg)
+    process_download_path(download_path)
 
     count = 0
     failed = 0
