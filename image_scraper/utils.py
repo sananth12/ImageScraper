@@ -5,7 +5,7 @@ import urlparse
 import os
 import argparse
 import re
-
+from exceptions import *
 
 def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
     x = []
@@ -57,12 +57,12 @@ def get_arguments():
 def process_download_path(download_path):
     if os.path.exists(download_path):
         if not os.access(download_path, os.W_OK):
-            return False, "Sorry, the directory can't be accessed."
+            raise DirectoryAccessError
     elif os.access(os.path.dirname(download_path), os.W_OK):
         os.makedirs(download_path)
     else:
-        return False, "Sorry, the directory can't be created."
-    return True, ""
+        raise DirectoryCreateError
+    return True
 
 
 def get_html(URL, use_ghost):

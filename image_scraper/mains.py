@@ -3,6 +3,7 @@ def console_main():
     from progressbar import *
     from utils import (process_links, get_html, get_img_list,
                        download_image, process_download_path, get_arguments)
+    from exceptions import *
     URL, no_to_download, format_list, download_path, max_filesize, dump_urls, scrape_reverse, use_ghost = get_arguments()
     print "\nImageScraper\n============\nRequesting page....\n"
 
@@ -16,9 +17,14 @@ def console_main():
 
     print "Found %s images: " % len(images)
 
-    download_path_flag, download_path_msg = process_download_path(download_path)
-    if not download_path_flag:
-        sys.exit(download_path_msg)
+    try:
+        process_download_path(download_path)
+    except DirectoryAccessError:
+        print "Sorry, the directory can't be accessed."
+        sys.exit()
+    except DirectoryCreateError:
+        print "Sorry, the directory can't be created."
+        sys.exit()
 
     if scrape_reverse:
         images.reverse()
@@ -71,9 +77,7 @@ def scrape_images(url, no_to_download=0,
     if no_to_download == 0:
         no_to_download = len(images)
 
-    download_path_flag, download_path_msg = process_download_path(download_path)
-    if not download_path_flag:
-        sys.exit(download_path_msg)
+    process_download_path(download_path)
 
     count = 0
     failed = 0
