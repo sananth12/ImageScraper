@@ -91,12 +91,12 @@ def scrape_images(url, no_to_download=0,
     over_max_filesize = 0
 
     for img_url in images:
-        flag, size_flag = download_image(img_url, download_path, max_filesize)
-        if not flag:
-            if not size_flag:
-                failed += 1
-            else:
-                over_max_filesize += 1
+        try:
+            download_image(img_url, download_path, max_filesize)
+        except ImageDownloadError:
+            failed += 1
+        except ImageSizeError:
+            over_max_filesize += 1
         count += 1
         if count == no_to_download:
             break
