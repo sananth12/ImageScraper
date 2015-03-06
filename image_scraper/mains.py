@@ -15,7 +15,7 @@ def console_main():
     if no_to_download == 0:
         no_to_download = len(images)
 
-    print "Found %s images: " % len(images)
+    print "Found {0} images: ".format(len(images))
 
     try:
         process_download_path(download_path)
@@ -56,7 +56,7 @@ def console_main():
             break
 
     pbar.finish()
-    print "\nDone!\nDownloaded %s images\nFailed: %s\n" % (count-failed-over_max_filesize, failed)
+    print "\nDone!\nDownloaded {0} images\nFailed: {1}\n".format(count-failed-over_max_filesize, failed)
     return
 
 
