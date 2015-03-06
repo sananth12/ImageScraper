@@ -56,7 +56,7 @@ def console_main():
             break
 
     pbar.finish()
-    print "\nDone!\nDownloaded %s images" % (count-failed-over_max_filesize)
+    print "\nDone!\nDownloaded %s images\nFailed: %s\n" % (count-failed-over_max_filesize, failed)
     return
 
 
