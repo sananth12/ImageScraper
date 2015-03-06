@@ -105,17 +105,15 @@ def download_image(img_url, download_path, max_filesize):
     size_success_flag = True
     try:
         img_request = requests.request('get', img_url, stream=True)
+        if img_request.status_code != 200:
+            raise ImageDownloadError(img_request.status_code)
     except:
-        success_flag = False
-        print "download of %s failed; status code %s" % \
-              (img_url, img_request.status_code)
-        print "status : %s" % img_request.status_code
-        return success_flag
+        raise ImageDownloadError()
+
     if int(img_request.headers['content-length']) < max_filesize:
         img_content = img_request.content
         with open(os.path.join(download_path,  img_url.split('/')[-1]), 'w') as f:
             f.write(img_content)
     else:
-        success_flag = False
-        size_success_flag = False
-    return success_flag, size_success_flag
+        raise ImageSizeError(img_request.headers['content-length'])
+    return True
