@@ -1,14 +1,11 @@
-from __future__ import absolute_import
-from future import standard_library
-standard_library.install_aliases()
 import sys
 from lxml import html
 import requests
-import urllib.parse
+import urlparse
 import os
 import argparse
 import re
-from .exceptions import *
+from exceptions import *
 
 
 def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
@@ -45,7 +42,7 @@ def get_arguments():
         URL = 'http://' + URL
     no_to_download = args.max_images
     save_dir = args.save_dir + '_{uri.netloc}'.format(
-        uri=urllib.parse.urlparse(URL))
+        uri=urlparse.urlparse(URL))
     if args.save_dir != "images":
         save_dir = args.save_dir
     download_path = os.path.join(os.getcwd(), save_dir)
@@ -71,7 +68,7 @@ def process_download_path(download_path):
 
 def get_html(URL, use_ghost):
     if use_ghost:
-        URL = urllib.parse.urljoin("http://", URL)
+        URL = urlparse.urljoin("http://", URL)
         import selenium
         import selenium.webdriver
         driver = selenium.webdriver.PhantomJS(service_log_path=os.path.devnull)
@@ -98,7 +95,7 @@ def get_img_list(page_html, page_url, format_list):
     img_list = process_links(img, format_list)
     img_links = process_links(links, format_list)
     img_list.extend(img_links)
-    images = [urllib.parse.urljoin(page_url, url) for url in img_list]
+    images = [urlparse.urljoin(page_url, url) for url in img_list]
     images = list(set(images))
     return images
 
@@ -116,7 +113,7 @@ def download_image(img_url, download_path, max_filesize):
 
     if int(img_request.headers['content-length']) < max_filesize:
         img_content = img_request.content
-        with open(os.path.join(download_path.decode("utf-8"),  img_url.split('/')[-1]), 'w') as f:
+        with open(os.path.join(download_path,  img_url.split('/')[-1]), 'w') as f:
             f.write(img_content)
     else:
         raise ImageSizeError(img_request.headers['content-length'])

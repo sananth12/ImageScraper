@@ -221,7 +221,7 @@ class ProgressBar(object):
                 currwidth += len(weval)
                 r.append(weval)
         for iw in hfill_inds:
-            r[iw] = r[iw].update(self, old_div((self.term_width-currwidth),num_hfill))
+            r[iw] = r[iw].update(self, old_div((self.term_width-currwidth), num_hfill))
         return r
 
     def _format_line(self):
