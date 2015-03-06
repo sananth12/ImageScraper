@@ -42,12 +42,13 @@ def console_main():
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
 
     for img_url in images:
-        flag, size_flag = download_image(img_url, download_path, max_filesize)
-        if not flag:
-            if not size_flag:
-                failed += 1
-            else:
-                over_max_filesize += 1
+        try:
+            download_image(img_url, download_path, max_filesize)
+        except ImageDownloadError:
+            failed += 1
+        except ImageSizeError:
+            over_max_filesize += 1
+
         count += 1
         percent = percent + 100.0 / no_to_download
         pbar.update(percent % 100)
