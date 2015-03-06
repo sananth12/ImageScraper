@@ -7,6 +7,7 @@ import argparse
 import re
 from exceptions import *
 
+
 def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
     x = []
     for l in links:
