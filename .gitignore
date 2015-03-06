@@ -4,3 +4,4 @@ ImageScraper.egg-info/
 *pyc
 rstmake.sh
 grip
+test_images/
