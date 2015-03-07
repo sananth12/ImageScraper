@@ -19,7 +19,7 @@ def console_main():
 
     if len(images) == 0:
         sys.exit("Sorry, no images found.")
-    if no_to_download == None:
+    if no_to_download is None:
         no_to_download = len(images)
 
     print("Found {0} images: ".format(len(images)))
@@ -82,7 +82,7 @@ def scrape_images(url, no_to_download=None,
 
     if len(images) == 0:
         return 0, 0  # count, failed
-    if no_to_download == None:
+    if no_to_download is None:
         no_to_download = len(images)
 
     process_download_path(download_path)
