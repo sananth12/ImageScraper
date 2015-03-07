@@ -20,7 +20,7 @@ def get_arguments():
     parser = argparse.ArgumentParser(
         description='Dowloads images form given URL')
     parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
-    parser.add_argument('-m', '--max-images', type=int, default=0,
+    parser.add_argument('-m', '--max-images', type=int, default=None,
                         help="Limit on number of images\n")
     parser.add_argument('-s', '--save-dir', type=str, default="images",
                         help="Directory in which images should be saved")

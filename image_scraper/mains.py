@@ -18,7 +18,7 @@ def console_main():
 
     if len(images) == 0:
         sys.exit("Sorry, no images found.")
-    if no_to_download == 0:
+    if no_to_download == None:
         no_to_download = len(images)
 
     print("Found {0} images: ".format(len(images)))
@@ -48,6 +48,8 @@ def console_main():
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
 
     for img_url in images:
+        if count == no_to_download:
+            break
         try:
             download_image(img_url, download_path, max_filesize)
         except ImageDownloadError:
@@ -58,15 +60,13 @@ def console_main():
         count += 1
         percent = percent + old_div(100.0, no_to_download)
         pbar.update(percent % 100)
-        if count == no_to_download:
-            break
 
     pbar.finish()
     print("\nDone!\nDownloaded {0} images\nFailed: {1}\n".format(count-failed-over_max_filesize, failed))
     return
 
 
-def scrape_images(url, no_to_download=0,
+def scrape_images(url, no_to_download=None,
                   format_list=["jpg", "png", "gif", "svg", "jpeg"],
                   download_path='images', max_filesize=100000000,
                   dump_urls=False, use_ghost=False):
@@ -81,7 +81,7 @@ def scrape_images(url, no_to_download=0,
 
     if len(images) == 0:
         return
-    if no_to_download == 0:
+    if no_to_download == None:
         no_to_download = len(images)
 
     process_download_path(download_path)
@@ -91,6 +91,8 @@ def scrape_images(url, no_to_download=0,
     over_max_filesize = 0
 
     for img_url in images:
+        if count == no_to_download:
+            break
         try:
             download_image(img_url, download_path, max_filesize)
         except ImageDownloadError:
@@ -98,6 +100,4 @@ def scrape_images(url, no_to_download=0,
         except ImageSizeError:
             over_max_filesize += 1
         count += 1
-        if count == no_to_download:
-            break
     return count, failed
