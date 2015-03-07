@@ -65,14 +65,14 @@ Scrape all images
 $ image-scraper  ananth.co.in/test.html
 ```
 
-Scrape 2 images
+Scrape at max 2 images
 ```sh
 $ image-scraper -m 2 ananth.co.in/test.html
 ```
 
 Scrape only gifs and download to folder ./mygifs
 ```sh
-$ image-scraper -s mygifs ananth.co.in --formats gif
+$ image-scraper -s mygifs ananth.co.in/test.html --formats gif
 ```
 
 ####NOTE:
