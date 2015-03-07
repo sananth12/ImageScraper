@@ -6,6 +6,7 @@ A cool command line tool which downloads all images in the given webpage.
 | ------------ | ------- | ------------------- |
 | [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-7.3k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
 
+####Demo
 Click [here](http://showterm.io/d3aef5bc3f37cd49757d1#fast) to see it in action!
 
 Download
@@ -38,9 +39,11 @@ Options
 ```sh
 -h, --help                      Print help
 -m, --max-images <number>       Maximum number images to be scraped
--s, --save-dir	<path>          Name of the folder to save the images (default: ./images_<domain>)
+-s, --save-dir	<path>          Name of the folder to save the images 
+--formats [ [FORMATS ..]]       Specify the formats of images to be scraped
 --max-filesize	<size>          Limit on size of image in bytes (default: 100000000)
 --dump-urls                     Print the URLs of the images
+--scrape-reverse                Scrape the images in reverse order
 ```
 
 ###If you downloaded the tar:
@@ -48,23 +51,32 @@ Extract the contents of the tar file.
 
 
 ```sh
-$cd ImageScraper/
-$python setup.py install
-$image-scraper --max-images 10 [url to scrape]
+$ cd ImageScraper/
+$ python setup.py install
+$ image-scraper --max-images 10 [url to scrape]
 
 ```
 
-###If installed using pip:
-Open python in terminal.
+Examples
+--------
 
+Scrape all images 
 ```sh
-$image-scraper --max-images 10 [url to scrape]
-
+$ image-scraper  ananth.co.in/test.html
 ```
 
+Scrape 2 images
+```sh
+$ image-scraper -m 2 ananth.co.in/test.html
+```
+
+Scrape only gifs and download to folder ./mygifs
+```sh
+$ image-scraper -s mygifs ananth.co.in --formats gif
+```
 
 ####NOTE:
-A new folder called "images_<domain>" will be created in the same place, containing all the downloaded images.
+By default, a new folder called "images_<domain>" will be created in the working directory, containing all the downloaded images.
 
 
 Issues
