@@ -2,14 +2,15 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
 from past.utils import old_div
+import sys
+from .progressbar import *
+from .utils import (process_links, get_html, get_img_list,
+                    download_image, process_download_path,
+                    get_arguments)
+from .exceptions import *
 
 
 def console_main():
-    import sys
-    from .progressbar import *
-    from .utils import (process_links, get_html, get_img_list,
-                        download_image, process_download_path, get_arguments)
-    from .exceptions import *
     URL, no_to_download, format_list, download_path, max_filesize, dump_urls, scrape_reverse, use_ghost = get_arguments()
     print("\nImageScraper\n============\nRequesting page....\n")
 
@@ -80,7 +81,7 @@ def scrape_images(url, no_to_download=None,
     download_path = os.path.join(os.getcwd(), download_path)
 
     if len(images) == 0:
-        return 0, 0 # count, failed
+        return 0, 0  # count, failed
     if no_to_download == None:
         no_to_download = len(images)
 

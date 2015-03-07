@@ -4,7 +4,7 @@ A cool command line tool which downloads all images in the given webpage.
 
 | Build Status | Version | Downloads |
 | ------------ | ------- | ------------------- |
-| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-7.3k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
+| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-7.5k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
 
 ####Demo
 Click [here](http://showterm.io/d3aef5bc3f37cd49757d1#fast) to see it in action!
@@ -39,7 +39,8 @@ Options
 ```sh
 -h, --help                      Print help
 -m, --max-images <number>       Maximum number images to be scraped
--s, --save-dir	<path>          Name of the folder to save the images 
+-s, --save-dir	<path>          Name of the folder to save the images
+-g, --injected                  Scrape injected images
 --formats [ [FORMATS ..]]       Specify the formats of images to be scraped
 --max-filesize	<size>          Limit on size of image in bytes (default: 100000000)
 --dump-urls                     Print the URLs of the images
