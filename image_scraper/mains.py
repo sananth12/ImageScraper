@@ -71,10 +71,7 @@ def scrape_images(url, no_to_download=None,
                   format_list=["jpg", "png", "gif", "svg", "jpeg"],
                   download_path='images', max_filesize=100000000,
                   dump_urls=False, use_ghost=False):
-    import sys
-    import os
-    from .utils import (process_links, get_html, get_img_list, download_image,
-                        process_download_path, get_arguments)
+
     page_html, page_url = get_html(url, use_ghost)
     images = get_img_list(page_html, page_url, format_list)
 
