@@ -80,7 +80,7 @@ def scrape_images(url, no_to_download=None,
     download_path = os.path.join(os.getcwd(), download_path)
 
     if len(images) == 0:
-        return
+        return 0, 0 # count, failed
     if no_to_download == None:
         no_to_download = len(images)
 
