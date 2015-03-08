@@ -8,9 +8,10 @@ def test_sum():
 
 def test_get_html_200():
 	import requests
-	r=requests.get('http://ananth.co.in/test.html')
+	from image_scraper.utils import get_html
+	page_html, url=get_html('http://ananth.co.in/test.html', False)
 	actual_html=u'<html>\n\n<head>\n    \n</head>\n\n<body>\n<img src="images/test1.jpg"/>\n<img src="images/test.png"/>\n<img src="images/test4.gif"/>\n</body>\n    \n</html>\n'
-	eq_(r.text, actual_html)
+	eq_(page_html, actual_html)
 
 def test_get_html_404():
 	import requests
