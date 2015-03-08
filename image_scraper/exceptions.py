@@ -19,6 +19,7 @@ class ImageSizeError(Exception):
     def __init__(self, image_size):
         self.image_size = image_size
 
+
 class PageLoadError(Exception):
     status_code = 0
 

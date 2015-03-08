@@ -17,7 +17,7 @@ def console_main():
     try:
         page_html, page_url = get_html(URL, use_ghost)
     except PageLoadError as e:
-        page_html =     ""
+        page_html = ""
         page_url = ""
         print("Page failed to load. Status code: {0}".format(e.status_code))
         sys.exit()
