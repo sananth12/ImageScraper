@@ -83,6 +83,8 @@ def get_html(URL, use_ghost):
             URL = "http://" + URL
             page = requests.get(URL)
         finally:
+            if page.status_code != 200:
+                raise PageErrorException(page.status_code)
             page_html = page.text
             page_url = page.url
     return (page_html, page_url)
