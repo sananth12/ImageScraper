@@ -29,3 +29,9 @@ def test_process_links():
     r = process_links(links, formats=["jpg", "png", "gif", "jpeg"])
     correct_res = ['a.png', 'b.png', 'c.jpg', 'd.gif']
     eq_(r, correct_res)
+
+def test_process_links_empty():
+    links = ['a.png', 'b.png', 'c.jpg', 'd.gif', 'f.svg', 'g.svg']
+    r = process_links(links, formats=[])
+    correct_res = []
+    eq_(r, correct_res)
