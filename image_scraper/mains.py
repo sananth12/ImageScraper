@@ -14,7 +14,14 @@ def console_main():
     URL, no_to_download, format_list, download_path, max_filesize, dump_urls, scrape_reverse, use_ghost = get_arguments()
     print("\nImageScraper\n============\nRequesting page....\n")
 
-    page_html, page_url = get_html(URL, use_ghost)
+    try:
+        page_html, page_url = get_html(URL, use_ghost)
+    except PageLoadError as e:
+        page_html =     ""
+        page_url = ""
+        print("Page failed to load. Status code: {0}".format(e.status_code))
+        sys.exit()
+
     images = get_img_list(page_html, page_url, format_list)
 
     if len(images) == 0:
