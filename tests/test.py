@@ -1,7 +1,7 @@
 #testset.py
 #yet to write proper tests.
 # TEST 1: Check if 3 images are dowloaded from ananth.co.in/test.html
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 def test_sum():
     eq_(2+2,4)
@@ -16,7 +16,7 @@ def test_get_html_404():
 	from image_scraper.utils import get_html
 	from image_scraper.exceptions import PageLoadError
 	try:
-		page_html, url=get_html('http://ananth.co.in/test404.html', False)
+		page_html, url=get_html('ananth.co.in/test404.html', False)
+		eq_(2, 3, "Page loaded with 200.")  # If the page loads, the test fails.
 	except PageLoadError as e:
 		eq_(e.status_code, 404)
-	eq_(1,2)  #Fails if page loads.
