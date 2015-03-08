@@ -5,3 +5,4 @@ ImageScraper.egg-info/
 rstmake.sh
 grip
 test_images/
+**/*/pyc
