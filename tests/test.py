@@ -30,8 +30,17 @@ def test_process_links():
     correct_res = ['a.png', 'b.png', 'c.jpg', 'd.gif']
     eq_(r, correct_res)
 
+
 def test_process_links_empty():
     links = ['a.png', 'b.png', 'c.jpg', 'd.gif', 'f.svg', 'g.svg']
     r = process_links(links, formats=[])
     correct_res = []
     eq_(r, correct_res)
+
+def test_get_img_list():
+    page_html = u'<html>\n\n<head>\n    \n</head>\n\n<body>\n<img src="images/test1.jpg"/>\n<img src="images/test.png"/>\n<img src="images/test4.gif"/>\n</body>\n    \n</html>\n'
+    format_list = ["jpg", "png", "gif", "jpeg"]
+    img_list = get_img_list(page_html, 'ananth.co.in/test.html', format_list)
+    actual_list = ['ananth.co.in/images/test.png', 'ananth.co.in/images/test1.jpg', 'ananth.co.in/images/test4.gif']
+    eq_(img_list, actual_list)
+
