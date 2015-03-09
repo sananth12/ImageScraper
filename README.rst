@@ -1,7 +1,7 @@
-ImageScraper 
-=============
+ImageScraper
+============
 
-A cool command line tool which downloads all images in the given
+A cool command line tool to download images in the given
 webpage.
 
 +------------------+--------------------+--------------------+
@@ -10,11 +10,23 @@ webpage.
 | |Build Status|   | |Latest Version|   | |PyPi downloads|   |
 +------------------+--------------------+--------------------+
 
+Demo
+^^^^
+
+Click `here <http://showterm.io/d3aef5bc3f37cd49757d1#fast>`__ to see it
+in action!
+
 Download
 --------
 
-pip install(recommended)
-~~~~~~~~~~~~~~~~~~~~~~~~
+tar file:
+~~~~~~~~~
+
+Grab the latest stable build from **- Pip:
+https://pypi.python.org/pypi/ImageScraper**
+
+pip install (recommended):
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also download using pip:
 
@@ -36,6 +48,13 @@ Usage
 
     $ image-scraper [OPTIONS] URL
 
+You can also use it in your python scripts.
+
+.. code:: py
+
+    import image_scraper
+    image_scraper.scrape_images(URL)
+
 Options
 -------
 
@@ -43,9 +62,12 @@ Options
 
     -h, --help                      Print help
     -m, --max-images <number>       Maximum number images to be scraped
-    -s, --save-dir  <path>          Name of the folder to save the images (default: ./images_<domain>)
+    -s, --save-dir  <path>          Name of the folder to save the images
+    -g, --injected                  Scrape injected images
+    --formats [ [FORMATS ..]]       Specify the formats of images to be scraped
     --max-filesize  <size>          Limit on size of image in bytes (default: 100000000)
     --dump-urls                     Print the URLs of the images
+    --scrape-reverse                Scrape the images in reverse order
 
 If you downloaded the tar:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -54,38 +76,41 @@ Extract the contents of the tar file.
 
 .. code:: sh
 
-    $cd ImageScraper/
-    $python setup.py install
-    $image-scraper --max-images 10 [url to scrape]
+    $ cd ImageScraper/
+    $ python setup.py install
+    $ image-scraper --max-images 10 [url to scrape]
 
-If installed using pip:
-~~~~~~~~~~~~~~~~~~~~~~~
+Examples
+--------
 
-Open python in terminal.
+Scrape all images
 
 .. code:: sh
 
-    $image-scraper --max-images 10 [url to scrape]
+    $ image-scraper  ananth.co.in/test.html
+
+Scrape at max 2 images
+
+.. code:: sh
+
+    $ image-scraper -m 2 ananth.co.in/test.html
+
+Scrape only gifs and download to folder ./mygifs
+
+.. code:: sh
+
+    $ image-scraper -s mygifs ananth.co.in/test.html --formats gif
 
 NOTE:
 ^^^^^
 
-A new folder called "images\_" will be created in the same place,
-containing all the downloaded images.
-
-Upgrading
----------
-
-Check if a newer version if available and upgrade using:
-
-.. code:: sh
-
-    $ sudo  pip install ImageScraper --upgrade
+By default, a new folder called "images\_" will be created in the
+working directory, containing all the downloaded images.
 
 
 .. |Build Status| image:: https://travis-ci.org/sananth12/ImageScraper.svg?branch=master
    :target: https://travis-ci.org/sananth12/ImageScraper
 .. |Latest Version| image:: https://pypip.in/v/ImageScraper/badge.png
    :target: https://pypi.python.org/pypi/ImageScraper/
-.. |PyPi downloads| image:: http://img.shields.io/badge/downloads-7k%20total-blue.svg
+.. |PyPi downloads| image:: http://img.shields.io/badge/downloads-7.5k%20total-blue.svg
    :target: https://pypi.python.org/pypi/ImageScraper
