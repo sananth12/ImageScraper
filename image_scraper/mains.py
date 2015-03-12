@@ -71,6 +71,7 @@ def console_main():
         count += 1
         percent = percent + old_div(100.0, no_to_download)
         pbar.update(percent % 100)
+        print(len(threads))
 
     pbar.finish()
     print("\nDone!\nDownloaded {0} images\nFailed: {1}\n".format(count-failed-over_max_filesize, failed))
