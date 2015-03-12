@@ -10,6 +10,7 @@ from .utils import (process_links, get_html, get_img_list,
 from .exceptions import *
 import threading
 
+
 def console_main():
     URL, no_to_download, format_list, download_path, max_filesize, dump_urls, scrape_reverse, use_ghost = get_arguments()
     print("\nImageScraper\n============\nRequesting page....\n")
@@ -55,13 +56,13 @@ def console_main():
                ' ', ETA(), ' ', FileTransferSpeed()]
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
 
-    threads=[]
+    threads = []
     for img_url in images:
         if count == no_to_download:
             break
         try:
             img_thread = threading.Thread(target=download_image, args=(img_url, download_path, max_filesize))
-            threads.append (img_thread)
+            threads.append(img_thread)
             img_thread.start()
         except ImageDownloadError:
             failed += 1
