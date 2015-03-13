@@ -4,11 +4,10 @@ from __future__ import absolute_import
 from past.utils import old_div
 import sys
 from .progressbar import *
-from .utils import (process_links, get_html, get_img_list,
-                    download_image, process_download_path,
-                    get_arguments)
+from .utils import *
 from .exceptions import *
 import threading
+import Queue
 
 
 def console_main():
@@ -55,26 +54,39 @@ def console_main():
     widgets = ['Progress: ', Percentage(), ' ', Bar(marker=RotatingMarker()),
                ' ', ETA(), ' ', FileTransferSpeed()]
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
-
-    threads = []
+    
+    download_q = Queue.Queue()
     for img_url in images:
         if count == no_to_download:
             break
-        try:
-            img_thread = threading.Thread(target=download_image, args=(img_url, download_path, max_filesize))
-            threads.append(img_thread)
-            img_thread.start()
-        except ImageDownloadError:
-            failed += 1
-        except ImageSizeError:
-            over_max_filesize += 1
+        download_q.put((img_url, download_path, max_filesize))
+    
+    count = 0
+    threads = []
+    nthreads = 10
+    for i in range(nthreads):
+        img_thread = threading.Thread(target=download_worker, args=(download_q,))
+        threads.append(img_thread)
+        img_thread.start()
+    download_q.join()
+    # for img_url in images:
+    #     if count == no_to_download:
+    #         break
+    #     try:
+    #         img_thread = threading.Thread(target=download_image, args=(img_url, download_path, max_filesize))
+    #         threads.append(img_thread)
+    #         img_thread.start()
+    #     except ImageDownloadError:
+    #         failed += 1
+    #     except ImageSizeError:
+    #         over_max_filesize += 1
 
-        count += 1
-        percent = percent + old_div(100.0, no_to_download)
-        pbar.update(percent % 100)
-        print(len(threads))
+    #     count += 1
+    #     percent = percent + old_div(100.0, no_to_download)
+    #     pbar.update(percent % 100)
+    #     print(len(threads))
 
-    pbar.finish()
+    # pbar.finish()
     print("\nDone!\nDownloaded {0} images\nFailed: {1}\n".format(count-failed-over_max_filesize, failed))
     return
 

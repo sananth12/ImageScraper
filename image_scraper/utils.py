@@ -6,7 +6,8 @@ import os
 import argparse
 import re
 from exceptions import *
-
+import threading
+import Queue
 
 def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
     x = []
@@ -120,3 +121,10 @@ def download_image(img_url, download_path, max_filesize):
     else:
         raise ImageSizeError(img_request.headers['content-length'])
     return True
+
+
+def download_worker(q):
+    while q.qsize():
+        args = q.get()
+        download_image(args[0], args[1], args[2])
+        q.task_done()
