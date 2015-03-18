@@ -28,7 +28,7 @@ Usage
 ```sh
 $ image-scraper [OPTIONS] URL
 ```
-You can also use it in your python scripts.
+You can also use it in your Python scripts.
 ```py
 import image_scraper
 image_scraper.scrape_images(URL)
@@ -85,7 +85,7 @@ Issues
 
 Q.)All images were not downloaded?
 
-It could be that the content was injected into the page via javascript and this scraper doesn't run javascript. 
+It could be that the content was injected into the page via JavaScript; this scraper doesn't run JavaScript. 
  
 
 Contribute
