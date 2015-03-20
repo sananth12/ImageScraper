@@ -18,7 +18,7 @@ def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
 
 def get_arguments():
     parser = argparse.ArgumentParser(
-        description='Dowloads images form given URL')
+        description='Downloads images from given URL')
     parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
     parser.add_argument('-m', '--max-images', type=int, default=None,
                         help="Limit on number of images\n")
@@ -32,7 +32,7 @@ def get_arguments():
                         help="Print the URLs of the images",
                         action="store_true")
     parser.add_argument('--formats', nargs="*", default=None,
-                        help="sepcify formats in a list without any seperator. This arguent must be after the url.")
+                        help="Specify formats in a list without any separator. This argument must be after the URL.")
     parser.add_argument('--scrape-reverse', default=False,
                         help="Scrape the images in reverse order",
                         action="store_true")

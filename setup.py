@@ -1,4 +1,3 @@
-
 try:
         from setuptools import setup
 except ImportError:
@@ -6,7 +5,7 @@ except ImportError:
 
 setup(name='ImageScraper',
     version='2.0.5',
-    install_requires=['lxml', 'requests'],
+    install_requires=['lxml', 'requests', 'future'],
     author='Anantha Natarajan S',
     author_email='sananthanatarajan12@gmail.com',
     packages=['image_scraper'],
