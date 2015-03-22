@@ -113,7 +113,12 @@ def download_image(img_url, download_path, max_filesize):
     except:
         raise ImageDownloadError()
 
-    if int(img_request.headers['content-length']) < max_filesize:
+    if img_url[-3:] == "svg" :
+        img_content = img_request.content
+        with open(os.path.join(download_path,  img_url.split('/')[-1]), 'w') as f:
+            f.write(img_content)
+
+    elif int(img_request.headers['content-length']) < max_filesize :
         img_content = img_request.content
         with open(os.path.join(download_path,  img_url.split('/')[-1]), 'w') as f:
             f.write(img_content)
