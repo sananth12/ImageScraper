@@ -232,6 +232,8 @@ class ProgressBar(object):
 
     def update(self, value):
         "Updates the progress bar to a new value."
+        if value <= 0.1:
+            value = 0
         assert 0 <= value <= self.maxval
         self.currval = value
         if not self._need_update() or self.finished:
