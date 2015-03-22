@@ -4,7 +4,7 @@ A cool command line tool which downloads images from the given webpage.
 
 | Build Status | Version | Downloads |
 | ------------ | ------- | ------------------- |
-| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-7.75k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
+| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-8k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
 
 ####Demo
 Click [here](http://showterm.io/d3aef5bc3f37cd49757d1#fast) to see it in action!
@@ -96,8 +96,9 @@ If you want to add features, improve them, or report issues, feel free to send a
 
 - [sananth12](https://github.com/sananth12) ([Anantha Natarajan](http://ananth.co.in))
 - [srirams6](https://github.com/srirams6) (Sriram Sundarraj)
-- [osborne6](https://github.com/osborne6)
-- [vigneshmanix](https://github.com/vigneshmanix) 
+- [vigneshmanix](https://github.com/vigneshmanix) (Vignesh M) 
+-	[osborne6](https://github.com/osborne6)
+- [tsleyson](https://github.com/tsleyson)
 
 [![Throughput Graph](https://graphs.waffle.io/sananth12/ImageScraper/throughput.svg)](https://waffle.io/sananth12/ImageScraper/metrics)
 
