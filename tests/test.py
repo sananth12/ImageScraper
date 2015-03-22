@@ -21,7 +21,7 @@ def test_get_html_404():
         page_html, url = get_html('ananth.co.in/test404.html', False)
         eq_(2, 3, "Page loaded with 200.")  # If the page loads, the test fails.
     except Exception as e:
-        eq_(e[0], 404)
+        eq_(e.args[0], 404)
 
 
 def test_process_links():
