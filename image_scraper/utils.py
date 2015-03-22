@@ -1,7 +1,9 @@
+from future.standard_library import install_aliases
+install_aliases()
 import sys
 from lxml import html
 import requests
-import urlparse
+from urllib.parse import urlparse, urljoin
 import os
 import argparse
 import re
@@ -42,7 +44,7 @@ def get_arguments():
         URL = 'http://' + URL
     no_to_download = args.max_images
     save_dir = args.save_dir + '_{uri.netloc}'.format(
-        uri=urlparse.urlparse(URL))
+        uri = urlparse(URL))
     if args.save_dir != "images":
         save_dir = args.save_dir
     download_path = os.path.join(os.getcwd(), save_dir)
@@ -68,7 +70,7 @@ def process_download_path(download_path):
 
 def get_html(URL, use_ghost):
     if use_ghost:
-        URL = urlparse.urljoin("http://", URL)
+        URL = urljoin("http://", URL)
         import selenium
         import selenium.webdriver
         driver = selenium.webdriver.PhantomJS(service_log_path=os.path.devnull)
@@ -97,7 +99,7 @@ def get_img_list(page_html, page_url, format_list):
     img_list = process_links(img, format_list)
     img_links = process_links(links, format_list)
     img_list.extend(img_links)
-    images = [urlparse.urljoin(page_url, url) for url in img_list]
+    images = [urljoin(page_url, url) for url in img_list]
     images = list(set(images))
     return images
 
