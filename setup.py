@@ -3,6 +3,10 @@ try:
 except ImportError:
         from distutils.core import setup
 
+extra = {}
+if sys.version_info >= (3,):
+            extra['use_2to3'] = True
+
 setup(name='ImageScraper',
     version='2.0.5',
     install_requires=['lxml', 'requests', 'future'],

@@ -7,7 +7,9 @@ from urllib.parse import urlparse, urljoin
 import os
 import argparse
 import re
-from exceptions import *
+
+if sys.version_info < (3,):
+    from exceptions import *
 
 
 def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
