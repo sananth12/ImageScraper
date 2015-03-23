@@ -21,7 +21,7 @@ def test_get_html_404():
         page_html, url = get_html('ananth.co.in/test404.html', False)
         eq_(2, 3, "Page loaded with 200.")  # If the page loads, the test fails.
     except Exception as e:
-        eq_(e[0], 404)
+        eq_(e.args[0], 404)
 
 
 def test_process_links():
@@ -42,5 +42,5 @@ def test_get_img_list():
     page_html = u'<html>\n\n<head>\n\n</head>\n\n<body>\n<img src="images/test4.gif"/>\n<img src="images/test1.jpg"/>\n<img src="images/build.svg"/>\n<img src="images/test.png"/>\n\n</body>\n\n</html>\n'
     format_list = ["jpg", "png", "gif", "jpeg", "svg"]
     img_list = get_img_list(page_html, 'ananth.co.in/test.html', format_list)
-    actual_list = ['ananth.co.in/images/build.svg', 'ananth.co.in/images/test.png', 'ananth.co.in/images/test1.jpg', 'ananth.co.in/images/test4.gif']
-    eq_(img_list, actual_list)
+    actual_list = ['ananth.co.in/images/build.svg', 'ananth.co.in/images/test4.gif', 'ananth.co.in/images/test1.jpg', 'ananth.co.in/images/test.png']
+    eq_(sorted(img_list), sorted(actual_list))
