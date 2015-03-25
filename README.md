@@ -108,3 +108,7 @@ License
 
 
 [![Analytics](https://ga-beacon.appspot.com/UA-60764448-1/ImageScraper/README.md)](https://github.com/igrigorik/ga-beacon)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sananth12/imagescraper/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
