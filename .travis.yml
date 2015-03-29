@@ -3,15 +3,14 @@ python:
   - "2.6"
   - "2.7"
   - "3.4"
-# command to install dependencies
-#install: pip install -r requirements.txt --use-mirrors
+# command to install package
 install:
-  - pip install ImageScraper
-  - pip install future
+  - python setup.py install
 
 # command to run tests
 script:
   - nosetests
+  - image-scraper ananth.co.in/test.html
 #after_success:
 #  coveralls
 notifications:
