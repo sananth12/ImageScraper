@@ -7,6 +7,7 @@ from urllib.parse import urlparse, urljoin
 import os
 import argparse
 import re
+from image_scraper.exceptions import *
 
 
 def process_links(links, formats=["jpg", "png", "gif", "svg", "jpeg"]):
