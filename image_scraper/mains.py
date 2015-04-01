@@ -6,8 +6,11 @@ import sys
 from .progressbar import *
 from .utils import ImageScraper
 from .exceptions import *
+from setproctitle import setproctitle
+
 
 def console_main():
+    setproctitle('image-scraper')
     scraper = ImageScraper()
     scraper.get_arguments()
     print("\nImageScraper\n============\nRequesting page....\n")
@@ -66,6 +69,7 @@ def console_main():
     pbar.finish()
     print("\nDone!\nDownloaded {0} images\nFailed: {1}\n".format(count-failed-over_max_filesize, failed))
     return
+
 
 def scrape_images(url, no_to_download=None,
                   format_list=["jpg", "png", "gif", "svg", "jpeg"],

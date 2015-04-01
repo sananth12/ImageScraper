@@ -9,6 +9,7 @@ import argparse
 import re
 from image_scraper.exceptions import *
 
+
 class ImageScraper:
     url = None
     no_to_download = 0
@@ -59,7 +60,7 @@ class ImageScraper:
             self.url = 'http://' + self.url
         self.no_to_download = args.max_images
         save_dir = args.save_dir + '_{uri.netloc}'.format(
-            uri = urlparse(self.url))
+            uri=urlparse(self.url))
         if args.save_dir != "images":
             save_dir = args.save_dir
         self.download_path = os.path.join(os.getcwd(), save_dir)
@@ -70,7 +71,6 @@ class ImageScraper:
         self.scrape_reverse = args.scrape_reverse
         return (self.url, self.no_to_download, self.format_list, self.download_path, self.max_filesize,
                 self.dump_urls, self.scrape_reverse, self.use_ghost)
-
 
     def get_html(self):
         if self.use_ghost:
@@ -98,7 +98,6 @@ class ImageScraper:
         self.page_html = page_html
         self.page_url = page_url
         return (self.page_html, self.page_url)
-
 
     def get_img_list(self):
         tree = html.fromstring(self.page_html)
@@ -135,13 +134,13 @@ class ImageScraper:
         except:
             raise ImageDownloadError()
 
-        if img_url[-3:] == "svg" :
+        if img_url[-3:] == "svg":
             img_content = img_request.content
             with open(os.path.join(self.download_path,  img_url.split('/')[-1]), 'wb') as f:
                 byte_image = bytes(img_content)
                 f.write(byte_image)
 
-        elif int(img_request.headers['content-length']) < self.max_filesize :
+        elif int(img_request.headers['content-length']) < self.max_filesize:
             img_content = img_request.content
             with open(os.path.join(self.download_path,  img_url.split('/')[-1]), 'wb') as f:
                 byte_image = bytes(img_content)
@@ -150,11 +149,9 @@ class ImageScraper:
             raise ImageSizeError(img_request.headers['content-length'])
         return True
 
-
     def process_links(self, links):
         x = []
         for l in links:
             if os.path.splitext(l)[1][1:].strip().lower() in self.format_list:
                     x.append(l)
         return x
-

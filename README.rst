@@ -1,8 +1,7 @@
-ImageScraper
-============
+ImageScraper :page\_with\_curl:
+===============================
 
-A cool command line tool to download images in the given
-webpage.
+A cool command line tool which downloads images from the given webpage.
 
 +------------------+--------------------+--------------------+
 | Build Status     | Version            | Downloads          |
@@ -37,9 +36,10 @@ You can also download using pip:
 **Dependencies**
 ^^^^^^^^^^^^^^^^
 
-Note that ``ImageScraper`` depends on ``lxml`` and ``requests``. If you
-run into problems in the compilation of ``lxml`` through ``pip``,
-install the ``libxml2-dev`` and ``libxslt-dev`` packages on your system.
+Note that ``ImageScraper`` depends on ``lxml``, ``requests``,
+``setproctitle``, and ``future``. If you run into problems in the
+compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and
+``libxslt-dev`` packages on your system.
 
 Usage
 -----
@@ -48,7 +48,7 @@ Usage
 
     $ image-scraper [OPTIONS] URL
 
-You can also use it in your python scripts.
+You can also use it in your Python scripts.
 
 .. code:: py
 
@@ -107,10 +107,48 @@ NOTE:
 By default, a new folder called "images\_" will be created in the
 working directory, containing all the downloaded images.
 
+Issues
+------
+
+Q.)All images were not downloaded?
+
+It could be that the content was injected into the page via JavaScript;
+this scraper doesn't run JavaScript.
+
+Contribute
+----------
+
+If you want to add features, improve them, or report issues, feel free
+to send a pull request!!
+
+Contributors
+~~~~~~~~~~~~
+
+-  `sananth12 <https://github.com/sananth12>`__ (`Anantha
+   Natarajan <http://ananth.co.in>`__)
+-  `srirams6 <https://github.com/srirams6>`__ (Sriram Sundarraj)
+-  `vigneshmanix <https://github.com/vigneshmanix>`__ (Vignesh M)
+-  `osborne6 <https://github.com/osborne6>`__
+-  `tsleyson <https://github.com/tsleyson>`__
+
+|Throughput Graph|
+
+License
+-------
+
+.. figure:: https://raw.githubusercontent.com/sananth12/ImageScraper/master/images/gpl.png
+   :alt: GPL V3
+
+   GPL V3
+|Analytics|
 
 .. |Build Status| image:: https://travis-ci.org/sananth12/ImageScraper.svg?branch=master
    :target: https://travis-ci.org/sananth12/ImageScraper
 .. |Latest Version| image:: https://pypip.in/v/ImageScraper/badge.png
    :target: https://pypi.python.org/pypi/ImageScraper/
-.. |PyPi downloads| image:: http://img.shields.io/badge/downloads-7.5k%20total-blue.svg
+.. |PyPi downloads| image:: http://img.shields.io/badge/downloads-8k%20total-blue.svg
    :target: https://pypi.python.org/pypi/ImageScraper
+.. |Throughput Graph| image:: https://graphs.waffle.io/sananth12/ImageScraper/throughput.svg
+   :target: https://waffle.io/sananth12/ImageScraper/metrics
+.. |Analytics| image:: https://ga-beacon.appspot.com/UA-60764448-1/ImageScraper/README.md
+   :target: https://github.com/igrigorik/ga-beacon

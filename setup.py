@@ -10,8 +10,8 @@ if sys.version_info >= (3,):
             extra['use_2to3'] = True
 
 setup(name='ImageScraper',
-    version='2.0.5',
-    install_requires=['lxml', 'requests', 'future'],
+    version='2.0.7',
+    install_requires=[r for r in open('requirements.txt', 'r').read().split('\n') if r],
     author='Anantha Natarajan S',
     author_email='sananthanatarajan12@gmail.com',
     packages=['image_scraper'],
