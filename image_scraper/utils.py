@@ -85,12 +85,14 @@ class ImageScraper:
         else:
             try:
                 page = requests.get(self.url)
+                if page.status_code != 200:
+                    raise PageLoadError(page.status_code)
             except requests.exceptions.MissingSchema:
                 self.url = "http://" + self.url
                 page = requests.get(self.url)
-            finally:
                 if page.status_code != 200:
                     raise PageLoadError(page.status_code)
+            finally:
                 page_html = page.text
                 page_url = page.url
         self.page_html = page_html
@@ -105,7 +107,7 @@ class ImageScraper:
         img_list = self.process_links(img)
         img_links = self.process_links(links)
         img_list.extend(img_links)
-        images = [urljoin(self.page_url, url) for url in img_list]
+        images = [urljoin(self.url, img_url) for img_url in img_list]
         images = list(set(images))
         self.images = images
         if self.scrape_reverse:
