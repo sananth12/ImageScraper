@@ -4,10 +4,12 @@ import sys
 from lxml import html
 import requests
 from urllib.parse import urlparse, urljoin
+from past.utils import old_div
 import os
 import argparse
 import re
 from image_scraper.exceptions import *
+import threading
 
 
 class ImageScraper:
@@ -157,17 +159,21 @@ class ImageScraper:
         return x
 
 
-def download_worker_fn(scraper, img_url, pbar, status_flags):
-    print(scraper.no_to_download)
-    print(status_flags)
+def download_worker_fn(scraper, img_url, pbar, status_flags, status_lock):
+    failed = False
+    size_failed = False
     try:
         scraper.download_image(img_url)
     except ImageDownloadError:
-        status_flags['failed'] += 1
+        failed = True
     except ImageSizeError:
+        size_failed = True
+    status_lock.acquire(True)
+    if failed:
+        status_flags['failed'] += 1
+    elif size_failed:
         status_flags['over_max_filesize'] += 1
-
-    status_flags['count'] += 1
     status_flags['percent'] = status_flags['percent'] + old_div(100.0, scraper.no_to_download)
     pbar.update(status_flags['percent'] % 100)
+    status_lock.release()
     return True

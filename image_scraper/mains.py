@@ -8,6 +8,7 @@ from .utils import ImageScraper, download_worker_fn
 from .exceptions import *
 from setproctitle import setproctitle
 import pyThreadpool
+import threading
 
 def console_main():
     setproctitle('image-scraper')
@@ -49,12 +50,13 @@ def console_main():
                ' ', ETA(), ' ', FileTransferSpeed()]
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
     pool = pyThreadpool.threadpool()
-
+    status_lock = threading.Lock()
     for img_url in scraper.images:
         if status_flags['count'] == scraper.no_to_download:
             break
-        download_job = pyThreadpool.thread_job(download_worker_fn, (scraper, img_url, pbar, status_flags))
+        download_job = pyThreadpool.thread_job(download_worker_fn, (scraper, img_url, pbar, status_flags, status_lock))
         pool.add_job(download_job)
+        status_flags['count'] += 1
 
     pool.start()
     pool.finish()
