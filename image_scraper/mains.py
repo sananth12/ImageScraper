@@ -7,7 +7,7 @@ from .progressbar import *
 from .utils import ImageScraper, download_worker_fn
 from .exceptions import *
 from setproctitle import setproctitle
-import pyThreadpool
+import .pyThreadpool as pyThreadpool
 import threading
 
 def console_main():
