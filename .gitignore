@@ -10,3 +10,4 @@ env/*
 images_*
 *~
 .coverage
+MANIFEST
