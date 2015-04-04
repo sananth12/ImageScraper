@@ -6,12 +6,12 @@ python:
 # command to install package
 install:
   - python setup.py install
-
+  - pip install coveralls
 # command to run tests
 script:
-  - nosetests
+  - nosetests --with-coverage --cover-package=image_scraper
   - image-scraper ananth.co.in/test.html
-#after_success:
-#  coveralls
+after_success:
+  coveralls
 notifications:
   email: false

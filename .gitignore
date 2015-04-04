@@ -8,3 +8,5 @@ test_images/
 **/*/pyc
 env/*
 images_*
+*~
+.coverage

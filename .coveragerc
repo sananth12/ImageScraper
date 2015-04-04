@@ -1,0 +1,6 @@
+[report]
+omit =
+    */image_scraper/pyThreadpool/*
+    */site-packages/nose/*
+    */image_scraper/progressbar.py
+    */image_scraper/mains.py
