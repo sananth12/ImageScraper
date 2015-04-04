@@ -4,7 +4,7 @@ A cool command line tool which downloads images from the given webpage.
 
 | Build Status | Version | Downloads |
 | ------------ | ------- | ------------------- |
-| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-8k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) |
+| [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-8k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) | [![Coverage Status](https://coveralls.io/repos/sananth12/ImageScraper/badge.svg?branch=coverage)](https://coveralls.io/r/sananth12/ImageScraper?branch=coverage) |
 
 ####Demo
 Click [here](http://showterm.io/d3aef5bc3f37cd49757d1#fast) to see it in action!
