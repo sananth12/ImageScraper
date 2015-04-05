@@ -23,3 +23,34 @@
     * :arrow_up: `:arrow_up:` when upgrading dependencies
     * :arrow_down: `:arrow_down:` when downgrading dependencies
     * :wrench: `:wrench:` when doing CI
+
+
+## Making changes:
+* Make your changes in a new git branch:
+
+    ```sh
+    git checkout -b fix-branch master
+    ```
+
+* Create your patch, *including appropriate test cases*.
+* Commit your changes using a descriptive commit message as mentioned above
+
+    ```sh
+    git commit -a
+    ```
+
+* Build your changes locally to ensure all the tests pass:
+
+    ```sh
+    nosetests
+    ```
+
+* Push your branch to GitHub:
+
+    ```sh
+    git push origin my-fix-branch
+    ```
+
+* In GitHub, send a pull request to `ImageScraper:master`.
+
+Thank you for your contribution!
