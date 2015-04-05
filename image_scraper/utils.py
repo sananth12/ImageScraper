@@ -10,7 +10,7 @@ import re
 from image_scraper.exceptions import *
 
 
-class ImageScraper:
+class ImageScraper(object):
     url = None
     no_to_download = 0
     format_list = []
