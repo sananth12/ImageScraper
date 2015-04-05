@@ -5,6 +5,7 @@ python:
   - "3.4"
 # command to install package
 install:
+  - pip install setuptools --upgrade
   - python setup.py install
   - pip install coveralls
 # command to run tests
