@@ -134,13 +134,7 @@ class ImageScraper(object):
         except:
             raise ImageDownloadError()
 
-        if img_url[-3:] == "svg":
-            img_content = img_request.content
-            with open(os.path.join(self.download_path,  img_url.split('/')[-1]), 'wb') as f:
-                byte_image = bytes(img_content)
-                f.write(byte_image)
-
-        elif int(img_request.headers['content-length']) < self.max_filesize:
+        if img_url[-3:] == "svg" or int(img_request.headers['content-length']) < self.max_filesize:
             img_content = img_request.content
             with open(os.path.join(self.download_path,  img_url.split('/')[-1]), 'wb') as f:
                 byte_image = bytes(img_content)
