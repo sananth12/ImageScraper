@@ -4,10 +4,11 @@ from __future__ import absolute_import
 from past.utils import old_div
 import sys
 from .progressbar import *
-from .utils import ImageScraper
+from .utils import ImageScraper, download_worker_fn
 from .exceptions import *
 from setproctitle import setproctitle
-
+import pyThreadpool
+import threading
 
 def console_main():
     setproctitle('image-scraper')
@@ -44,30 +45,25 @@ def console_main():
         for img_url in scraper.images:
             print(img_url)
 
-    count = 0
-    percent = 0.0
-    failed = 0
-    over_max_filesize = 0
+    status_flags = {'count': 0, 'percent': 0.0, 'failed': 0, 'over_max_filesize': 0}
     widgets = ['Progress: ', Percentage(), ' ', Bar(marker=RotatingMarker()),
                ' ', ETA(), ' ', FileTransferSpeed()]
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
-
+    pool = pyThreadpool.threadpool()
+    status_lock = threading.Lock()
     for img_url in scraper.images:
-        if count == scraper.no_to_download:
+        if status_flags['count'] == scraper.no_to_download:
             break
-        try:
-            scraper.download_image(img_url)
-        except ImageDownloadError:
-            failed += 1
-        except ImageSizeError:
-            over_max_filesize += 1
+        download_job = pyThreadpool.thread_job(download_worker_fn, (scraper, img_url, pbar, status_flags, status_lock))
+        pool.add_job(download_job)
+        status_flags['count'] += 1
 
-        count += 1
-        percent = percent + old_div(100.0, scraper.no_to_download)
-        pbar.update(percent % 100)
+    pool.start()
+    pool.finish()
 
     pbar.finish()
-    print("\nDone!\nDownloaded {0} images\nFailed: {1}\n".format(count-failed-over_max_filesize, failed))
+    print("\nDone!\nDownloaded {0} images\nFailed: {1}\n".format(
+          status_flags['count']-status_flags['failed']-status_flags['over_max_filesize'], status_flags['failed']))
     return
 
 
