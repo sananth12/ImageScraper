@@ -1,5 +1,5 @@
-ImageScraper :page\_with\_curl:
-===============================
+ImageScraper
+============
 
 A cool command line tool which downloads images from the given webpage.
 
@@ -131,16 +131,8 @@ Contributors
 -  `osborne6 <https://github.com/osborne6>`__
 -  `tsleyson <https://github.com/tsleyson>`__
 
-|Throughput Graph|
 
-License
--------
 
-.. figure:: https://raw.githubusercontent.com/sananth12/ImageScraper/master/images/gpl.png
-   :alt: GPL V3
-
-   GPL V3
-|Analytics|
 
 .. |Build Status| image:: https://travis-ci.org/sananth12/ImageScraper.svg?branch=master
    :target: https://travis-ci.org/sananth12/ImageScraper
@@ -148,7 +140,3 @@ License
    :target: https://pypi.python.org/pypi/ImageScraper/
 .. |PyPi downloads| image:: http://img.shields.io/badge/downloads-8k%20total-blue.svg
    :target: https://pypi.python.org/pypi/ImageScraper
-.. |Throughput Graph| image:: https://graphs.waffle.io/sananth12/ImageScraper/throughput.svg
-   :target: https://waffle.io/sananth12/ImageScraper/metrics
-.. |Analytics| image:: https://ga-beacon.appspot.com/UA-60764448-1/ImageScraper/README.md
-   :target: https://github.com/igrigorik/ga-beacon

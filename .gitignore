@@ -11,3 +11,4 @@ images_*
 *~
 .coverage
 MANIFEST
+src/
