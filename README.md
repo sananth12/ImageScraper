@@ -1,6 +1,6 @@
 ImageScraper :page_with_curl:
 ============
-A cool command line tool which downloads images from the given webpage.
+A high performance, easy to use multithreaded command line tool which downloads images from the given webpage.
 
 | Build Status | Version | Downloads | Test Coverage |
 | ------------ | ------- | --------- | ------------- |
