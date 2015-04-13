@@ -1,13 +1,14 @@
-ImageScraper
-============
+ImageScraper :page\_with\_curl:
+===============================
 
-A cool command line tool which downloads images from the given webpage.
+A high performance, easy to use, multithreaded command line tool which
+downloads images from the given webpage.
 
-+------------------+--------------------+--------------------+
-| Build Status     | Version            | Downloads          |
-+==================+====================+====================+
-| |Build Status|   | |Latest Version|   | |PyPi downloads|   |
-+------------------+--------------------+--------------------+
++------------------+--------------------+--------------------+---------------------+
+| Build Status     | Version            | Downloads          | Test Coverage       |
++==================+====================+====================+=====================+
+| |Build Status|   | |Latest Version|   | |PyPi downloads|   | |Coverage Status|   |
++------------------+--------------------+--------------------+---------------------+
 
 Demo
 ^^^^
@@ -37,9 +38,11 @@ You can also download using pip:
 ^^^^^^^^^^^^^^^^
 
 Note that ``ImageScraper`` depends on ``lxml``, ``requests``,
-``setproctitle``, and ``future``. If you run into problems in the
-compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and
-``libxslt-dev`` packages on your system.
+``setproctitle``, and ``future``. It also depends on ``pyThreadpool``
+which can be downloaded and installed from
+`here <http://github.com/srirams6/py-Threadpool>`__ temporarily. If you
+run into problems in the compilation of ``lxml`` through ``pip``,
+install the ``libxml2-dev`` and ``libxslt-dev`` packages on your system.
 
 Usage
 -----
@@ -131,12 +134,26 @@ Contributors
 -  `osborne6 <https://github.com/osborne6>`__
 -  `tsleyson <https://github.com/tsleyson>`__
 
+|Throughput Graph|
 
+License
+-------
 
+.. figure:: https://raw.githubusercontent.com/sananth12/ImageScraper/master/images/gpl.png
+   :alt: GPL V3
+
+   GPL V3
+|Analytics|
 
 .. |Build Status| image:: https://travis-ci.org/sananth12/ImageScraper.svg?branch=master
    :target: https://travis-ci.org/sananth12/ImageScraper
 .. |Latest Version| image:: https://pypip.in/v/ImageScraper/badge.png
    :target: https://pypi.python.org/pypi/ImageScraper/
-.. |PyPi downloads| image:: http://img.shields.io/badge/downloads-8k%20total-blue.svg
+.. |PyPi downloads| image:: http://img.shields.io/badge/downloads-8.5k%20total-blue.svg
    :target: https://pypi.python.org/pypi/ImageScraper
+.. |Coverage Status| image:: https://coveralls.io/repos/sananth12/ImageScraper/badge.svg?branch=coverage
+   :target: https://coveralls.io/r/sananth12/ImageScraper?branch=coverage
+.. |Throughput Graph| image:: https://graphs.waffle.io/sananth12/ImageScraper/throughput.svg
+   :target: https://waffle.io/sananth12/ImageScraper/metrics
+.. |Analytics| image:: https://ga-beacon.appspot.com/UA-60764448-1/ImageScraper/README.md
+   :target: https://github.com/igrigorik/ga-beacon
