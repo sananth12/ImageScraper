@@ -10,6 +10,7 @@ from setproctitle import setproctitle
 import SimplePool
 import threading
 
+
 def console_main():
     setproctitle('image-scraper')
     scraper = ImageScraper()
