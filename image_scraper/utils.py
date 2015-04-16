@@ -25,6 +25,7 @@ class ImageScraper(object):
     page_url = None
     images = None
     proxy_url = None
+    proxies = {}
 
     def __init__(self):
         url = None
