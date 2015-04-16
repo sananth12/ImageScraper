@@ -2,13 +2,14 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
 from past.utils import old_div
-import sys
 from .progressbar import *
 from .utils import ImageScraper, download_worker_fn
 from .exceptions import *
 from setproctitle import setproctitle
 import SimplePool
 import threading
+import sys
+import os
 
 
 def console_main():
@@ -72,9 +73,11 @@ def scrape_images(url, no_to_download=None,
                   format_list=["jpg", "png", "gif", "svg", "jpeg"],
                   download_path='images', max_filesize=100000000,
                   dump_urls=False, use_ghost=False):
-    #  Broken due to wrapping in class. Need to fix!
-    page_html, page_url = get_html(url, use_ghost)
-    images = get_img_list(page_html, page_url, format_list)
+    
+    scraper = ImageScraper()
+    scraper.url = url
+    page_html, page_url = scraper.get_html()
+    images = scraper.get_img_list()
 
     download_path = os.path.join(os.getcwd(), download_path)
 

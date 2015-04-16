@@ -1,10 +1,13 @@
-# testset.py
-# yet to write proper tests.
-# TEST 1: Check if 3 images are dowloaded from ananth.co.in/test.html
+import os
+import sys
+import threading
+import image_scraper
+import SimplePool
+import glob
 from nose.tools import eq_, ok_
-from image_scraper.utils import ImageScraper
+from image_scraper.utils import *
 from image_scraper.exceptions import *
-
+from image_scraper.progressbar import *
 
 def test_sum():
     eq_(2+2, 4)
@@ -18,7 +21,7 @@ def test_get_html_200():
     actual_html = u'<html>\n\n<head>\n    \n</head>\n\n<body>\n<img src="images/test4.gif"/>\n<img src="images/test1.jpg"/>\n<img src="images/build.svg"/>\n<img src="images/test.png"/>\n\n</body>\n    \n</html>\n'
     eq_(scraper.page_html, actual_html)
 
-
+    
 def test_get_html_404():
     try:
         scraper = ImageScraper()
@@ -57,3 +60,8 @@ def test_get_img_list():
     img_list = scraper.get_img_list()
     actual_list = ['ananth.co.in/images/build.svg', 'ananth.co.in/images/test4.gif', 'ananth.co.in/images/test1.jpg', 'ananth.co.in/images/test.png']
     eq_(sorted(img_list), sorted(actual_list))
+
+    
+def test_integration():
+    os.system("image-scraper -m 1 -s images_test ananth.co.in/test")
+    eq_(glob.glob("images_test/*")[0], 'images_test/test4.gif')

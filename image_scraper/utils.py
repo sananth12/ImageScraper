@@ -11,7 +11,6 @@ import re
 from image_scraper.exceptions import *
 import threading
 
-
 class ImageScraper(object):
     url = None
     no_to_download = 0
