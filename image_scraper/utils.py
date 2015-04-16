@@ -13,6 +13,7 @@ import threading
 
 
 class ImageScraper(object):
+    proxyUrl = None
     url = None
     no_to_download = 0
     format_list = []
@@ -46,6 +47,8 @@ class ImageScraper(object):
                             help="Directory in which images should be saved")
         parser.add_argument('-g', '--injected', help="Scrape injected images",
                             action="store_true")
+        parser.add_argument('--proxy-server', type=str, default=None,
+                            help="Proxy server to use")
         parser.add_argument('--max-filesize', type=int, default=100000000,
                             help="Limit on size of image in bytes")
         parser.add_argument('--dump-urls', default=False,
@@ -70,6 +73,11 @@ class ImageScraper(object):
         self.format_list = args.formats if args.formats else ["jpg", "png", "gif", "svg", "jpeg"]
         self.max_filesize = args.max_filesize
         self.dump_urls = args.dump_urls
+        self.proxyUrl = args.proxy_server
+        if self.proxyUrl:
+            if not re.match(r'^[a-zA-Z]+://', self.proxyUrl):
+                self.proxyUrl = 'http://' + self.proxyUrl
+        
         self.scrape_reverse = args.scrape_reverse
         return (self.url, self.no_to_download, self.format_list, self.download_path, self.max_filesize,
                 self.dump_urls, self.scrape_reverse, self.use_ghost)
@@ -85,13 +93,23 @@ class ImageScraper(object):
             page_url = driver.current_url
             driver.quit()
         else:
+            proxies = {}
+            
+            if self.proxyUrl:
+                startLength = self.proxyUrl.find("://") + 3
+                print("Using proxy: " + self.proxyUrl[:startLength] + self.proxyUrl[startLength:] + "\n")
+                proxies = {
+                    self.proxyUrl[:(startLength - 3)] : self.proxyUrl[startLength:]
+                }
+        
             try:
-                page = requests.get(self.url)
+                page = requests.get(self.url,proxies=proxies)
+                
                 if page.status_code != 200:
                     raise PageLoadError(page.status_code)
             except requests.exceptions.MissingSchema:
                 self.url = "http://" + self.url
-                page = requests.get(self.url)
+                page = requests.get(self.url, proxies=proxies)
                 if page.status_code != 200:
                     raise PageLoadError(page.status_code)
             finally:
@@ -130,7 +148,15 @@ class ImageScraper(object):
         success_flag = True
         size_success_flag = True
         try:
-            img_request = requests.request('get', img_url, stream=True)
+            proxies = {}
+            
+            if self.proxyUrl:
+                startLength = self.proxyUrl.find("://") + 3
+                proxies = {
+                    self.proxyUrl[:(startLength - 3)] : self.proxyUrl[startLength:]
+                }
+            
+            img_request = requests.request('get', img_url, stream=True, proxies=proxies)
             if img_request.status_code != 200:
                 raise ImageDownloadError(img_request.status_code)
         except:
