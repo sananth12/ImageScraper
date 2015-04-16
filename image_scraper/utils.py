@@ -13,7 +13,6 @@ import threading
 
 
 class ImageScraper(object):
-    proxyUrl = None
     url = None
     no_to_download = 0
     format_list = []
@@ -25,6 +24,7 @@ class ImageScraper(object):
     page_html = None
     page_url = None
     images = None
+    proxy_url = None
 
     def __init__(self):
         url = None
@@ -70,14 +70,15 @@ class ImageScraper(object):
             save_dir = args.save_dir
         self.download_path = os.path.join(os.getcwd(), save_dir)
         self.use_ghost = args.injected
-        self.format_list = args.formats if args.formats else ["jpg", "png", "gif", "svg", "jpeg"]
+        self.format_list = args.formats if args.formats else [
+            "jpg", "png", "gif", "svg", "jpeg"]
         self.max_filesize = args.max_filesize
         self.dump_urls = args.dump_urls
-        self.proxyUrl = args.proxy_server
-        if self.proxyUrl:
-            if not re.match(r'^[a-zA-Z]+://', self.proxyUrl):
-                self.proxyUrl = 'http://' + self.proxyUrl
-        
+        self.proxy_url = args.proxy_server
+        if self.proxy_url:
+            if not re.match(r'^[a-zA-Z]+://', self.proxy_url):
+                self.proxy_url = 'http://' + self.proxy_url
+
         self.scrape_reverse = args.scrape_reverse
         return (self.url, self.no_to_download, self.format_list, self.download_path, self.max_filesize,
                 self.dump_urls, self.scrape_reverse, self.use_ghost)
@@ -87,24 +88,26 @@ class ImageScraper(object):
             self.url = urljoin("http://", self.url)
             import selenium
             import selenium.webdriver
-            driver = selenium.webdriver.PhantomJS(service_log_path=os.path.devnull)
+            driver = selenium.webdriver.PhantomJS(
+                service_log_path=os.path.devnull)
             driver.get(self.url)
             page_html = driver.page_source
             page_url = driver.current_url
             driver.quit()
         else:
             proxies = {}
-            
-            if self.proxyUrl:
-                startLength = self.proxyUrl.find("://") + 3
-                print("Using proxy: " + self.proxyUrl[:startLength] + self.proxyUrl[startLength:] + "\n")
+
+            if self.proxy_url:
+                startLength = self.proxy_url.find("://") + 3
+                print(
+                    "Using proxy: " + self.proxy_url[:startLength] + self.proxy_url[startLength:] + "\n")
                 proxies = {
-                    self.proxyUrl[:(startLength - 3)] : self.proxyUrl
+                    self.proxy_url[:(startLength - 3)]: self.proxy_url
                 }
-        
+
             try:
-                page = requests.get(self.url,proxies=proxies)
-                
+                page = requests.get(self.url, proxies=proxies)
+
                 if page.status_code != 200:
                     raise PageLoadError(page.status_code)
             except requests.exceptions.MissingSchema:
@@ -149,14 +152,15 @@ class ImageScraper(object):
         size_success_flag = True
         try:
             proxies = {}
-            
-            if self.proxyUrl:
-                startLength = self.proxyUrl.find("://") + 3
+
+            if self.proxy_url:
+                startLength = self.proxy_url.find("://") + 3
                 proxies = {
-                    self.proxyUrl[:(startLength - 3)] : self.proxyUrl
+                    self.proxy_url[:(startLength - 3)]: self.proxy_url
                 }
-            
-            img_request = requests.request('get', img_url, stream=True, proxies=proxies)
+
+            img_request = requests.request(
+                'get', img_url, stream=True, proxies=proxies)
             if img_request.status_code != 200:
                 raise ImageDownloadError(img_request.status_code)
         except:
@@ -175,7 +179,7 @@ class ImageScraper(object):
         x = []
         for l in links:
             if os.path.splitext(l)[1][1:].strip().lower() in self.format_list:
-                    x.append(l)
+                x.append(l)
         return x
 
 
@@ -193,7 +197,8 @@ def download_worker_fn(scraper, img_url, pbar, status_flags, status_lock):
         status_flags['failed'] += 1
     elif size_failed:
         status_flags['over_max_filesize'] += 1
-    status_flags['percent'] = status_flags['percent'] + old_div(100.0, scraper.no_to_download)
+    status_flags['percent'] = status_flags[
+        'percent'] + old_div(100.0, scraper.no_to_download)
     pbar.update(status_flags['percent'] % 100)
     status_lock.release()
     return True
