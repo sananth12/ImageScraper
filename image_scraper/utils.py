@@ -99,7 +99,7 @@ class ImageScraper(object):
                 startLength = self.proxyUrl.find("://") + 3
                 print("Using proxy: " + self.proxyUrl[:startLength] + self.proxyUrl[startLength:] + "\n")
                 proxies = {
-                    self.proxyUrl[:(startLength - 3)] : self.proxyUrl[startLength:]
+                    self.proxyUrl[:(startLength - 3)] : self.proxyUrl
                 }
         
             try:
@@ -153,7 +153,7 @@ class ImageScraper(object):
             if self.proxyUrl:
                 startLength = self.proxyUrl.find("://") + 3
                 proxies = {
-                    self.proxyUrl[:(startLength - 3)] : self.proxyUrl[startLength:]
+                    self.proxyUrl[:(startLength - 3)] : self.proxyUrl
                 }
             
             img_request = requests.request('get', img_url, stream=True, proxies=proxies)
