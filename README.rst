@@ -4,11 +4,11 @@ ImageScraper :page\_with\_curl:
 A high performance, easy to use, multithreaded command line tool which
 downloads images from the given webpage.
 
-+------------------+--------------------+--------------------+---------------------+
-| Build Status     | Version            | Downloads          | Test Coverage       |
-+==================+====================+====================+=====================+
-| |Build Status|   | |Latest Version|   | |PyPi downloads|   | |Coverage Status|   |
-+------------------+--------------------+--------------------+---------------------+
++------------------+--------------------+--------------------+
+| Build Status     | Version            | Downloads          |
++==================+====================+====================+
+| |Build Status|   | |Latest Version|   | |PyPi downloads|   |
++------------------+--------------------+--------------------+
 
 Demo
 ^^^^
@@ -19,11 +19,6 @@ in action!
 Download
 --------
 
-tar file:
-~~~~~~~~~
-
-Grab the latest stable build from **- Pip:
-https://pypi.python.org/pypi/ImageScraper**
 
 pip install (recommended):
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -34,8 +29,8 @@ You can also download using pip:
 
     $ pip install ImageScraper
 
-**Dependencies**
-^^^^^^^^^^^^^^^^
+Dependencies
+^^^^^^^^^^^^
 
 Note that ``ImageScraper`` depends on ``lxml``, ``requests``,
 ``setproctitle``, and ``future``. It also depends on ``pyThreadpool``
@@ -71,6 +66,7 @@ Options
     --max-filesize  <size>          Limit on size of image in bytes (default: 100000000)
     --dump-urls                     Print the URLs of the images
     --scrape-reverse                Scrape the images in reverse order
+    --proxy-urls            Use the specified HTTP/HTTPS proxy
 
 If you downloaded the tar:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -110,50 +106,12 @@ NOTE:
 By default, a new folder called "images\_" will be created in the
 working directory, containing all the downloaded images.
 
-Issues
-------
 
-Q.)All images were not downloaded?
-
-It could be that the content was injected into the page via JavaScript;
-this scraper doesn't run JavaScript.
-
-Contribute
-----------
-
-If you want to add features, improve them, or report issues, feel free
-to send a pull request!!
-
-Contributors
-~~~~~~~~~~~~
-
--  `sananth12 <https://github.com/sananth12>`__ (`Anantha
-   Natarajan <http://ananth.co.in>`__)
--  `srirams6 <https://github.com/srirams6>`__ (Sriram Sundarraj)
--  `vigneshmanix <https://github.com/vigneshmanix>`__ (Vignesh M)
--  `osborne6 <https://github.com/osborne6>`__
--  `tsleyson <https://github.com/tsleyson>`__
-
-|Throughput Graph|
-
-License
--------
-
-.. figure:: https://raw.githubusercontent.com/sananth12/ImageScraper/master/images/gpl.png
-   :alt: GPL V3
-
-   GPL V3
-|Analytics|
 
 .. |Build Status| image:: https://travis-ci.org/sananth12/ImageScraper.svg?branch=master
    :target: https://travis-ci.org/sananth12/ImageScraper
 .. |Latest Version| image:: https://pypip.in/v/ImageScraper/badge.png
    :target: https://pypi.python.org/pypi/ImageScraper/
-.. |PyPi downloads| image:: http://img.shields.io/badge/downloads-8.5k%20total-blue.svg
+.. |PyPi downloads| image:: http://img.shields.io/badge/downloads-10k%20total-blue.svg
    :target: https://pypi.python.org/pypi/ImageScraper
-.. |Coverage Status| image:: https://coveralls.io/repos/sananth12/ImageScraper/badge.svg?branch=coverage
-   :target: https://coveralls.io/r/sananth12/ImageScraper?branch=coverage
-.. |Throughput Graph| image:: https://graphs.waffle.io/sananth12/ImageScraper/throughput.svg
-   :target: https://waffle.io/sananth12/ImageScraper/metrics
-.. |Analytics| image:: https://ga-beacon.appspot.com/UA-60764448-1/ImageScraper/README.md
-   :target: https://github.com/igrigorik/ga-beacon
+
