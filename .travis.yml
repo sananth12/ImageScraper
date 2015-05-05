@@ -6,7 +6,7 @@ python:
 # command to install package
 install:
   - pip install setuptools --upgrade
-  - python setup.py install
+#  - python setup.py install
   - pip install coveralls
   - pip install ImageScraper
 # command to run tests

@@ -60,8 +60,3 @@ def test_get_img_list():
     img_list = scraper.get_img_list()
     actual_list = ['ananth.co.in/images/build.svg', 'ananth.co.in/images/test4.gif', 'ananth.co.in/images/test1.jpg', 'ananth.co.in/images/test.png']
     eq_(sorted(img_list), sorted(actual_list))
-
-    
-def test_integration():
-    os.system("image-scraper -m 1 -s images_test ananth.co.in/test")
-    eq_(glob.glob("images_test/*")[0], 'images_test/test4.gif')
