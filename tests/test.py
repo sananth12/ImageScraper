@@ -21,7 +21,7 @@ def test_get_html_200():
     actual_html = u'<html>\n\n<head>\n    \n</head>\n\n<body>\n<img src="images/test4.gif"/>\n<img src="images/test1.jpg"/>\n<img src="images/build.svg"/>\n<img src="images/test.png"/>\n\n</body>\n    \n</html>\n'
     eq_(scraper.page_html, actual_html)
 
-    
+
 def test_get_html_404():
     try:
         scraper = ImageScraper()
@@ -59,4 +59,14 @@ def test_get_img_list():
     scraper.url = 'ananth.co.in/test.html'
     img_list = scraper.get_img_list()
     actual_list = ['ananth.co.in/images/build.svg', 'ananth.co.in/images/test4.gif', 'ananth.co.in/images/test1.jpg', 'ananth.co.in/images/test.png']
+    eq_(sorted(img_list), sorted(actual_list))
+
+def test_get_img_list_with_pattern():
+    scraper = ImageScraper()
+    scraper.page_html = u'<html>\n\n<head>\n\n</head>\n\n<body>\n<img src="images/test4.gif"/>\n<img src="images/test1.jpg"/>\n<img src="images/build.svg"/>\n<img src="images/test.png"/>\n\n</body>\n\n</html>\n'
+    scraper.format_list = ["jpg", "png", "gif", "jpeg", "svg"]
+    scraper.url = 'ananth.co.in/test.html'
+    scraper.filename_pattern = '[0-9]'
+    img_list = scraper.get_img_list()
+    actual_list = ['ananth.co.in/images/test4.gif', 'ananth.co.in/images/test1.jpg']
     eq_(sorted(img_list), sorted(actual_list))
