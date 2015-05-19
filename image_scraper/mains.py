@@ -72,10 +72,11 @@ def console_main():
 def scrape_images(url, no_to_download=None,
                   format_list=["jpg", "png", "gif", "svg", "jpeg"],
                   download_path='images', max_filesize=100000000,
-                  dump_urls=False, use_ghost=False):
-    
+                  dump_urls=False, use_ghost=False, filename_pattern=None):
+
     scraper = ImageScraper()
     scraper.url = url
+    scraper.filename_pattern = filename_pattern
     page_html, page_url = scraper.get_html()
     images = scraper.get_img_list()
 

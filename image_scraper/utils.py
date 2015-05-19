@@ -20,6 +20,7 @@ class ImageScraper(object):
     dump_urls = False
     scrape_reverse = False
     use_ghost = False
+    filename_pattern = None
     page_html = None
     page_url = None
     images = None
@@ -59,6 +60,8 @@ class ImageScraper(object):
         parser.add_argument('--scrape-reverse', default=False,
                             help="Scrape the images in reverse order",
                             action="store_true")
+        parser.add_argument('--filename-pattern', type=str, default=None,
+                            help="Only scrape images with filenames that match the given regex pattern")
         args = parser.parse_args()
         self.url = args.url2scrape[0]
         if not re.match(r'^[a-zA-Z]+://', self.url):
@@ -85,8 +88,9 @@ class ImageScraper(object):
             }
 
         self.scrape_reverse = args.scrape_reverse
+        self.filename_pattern = args.filename_pattern
         return (self.url, self.no_to_download, self.format_list, self.download_path, self.max_filesize,
-                self.dump_urls, self.scrape_reverse, self.use_ghost)
+                self.dump_urls, self.scrape_reverse, self.use_ghost, self.filename_pattern)
 
     def get_html(self):
         if self.use_ghost:
@@ -126,7 +130,21 @@ class ImageScraper(object):
         img_list = self.process_links(img)
         img_links = self.process_links(links)
         img_list.extend(img_links)
-        images = [urljoin(self.url, img_url) for img_url in img_list]
+
+        if self.filename_pattern:
+            # Compile pattern for efficiency
+            pattern = re.compile(self.filename_pattern)
+
+            # Verifies filename in the image URL matches pattern
+            def matches_pattern(img_url):
+                img_filename = urlparse(img_url).path.split('/')[-1]
+                return pattern.search(img_filename)
+
+            images = [urljoin(self.url, img_url) for img_url in img_list
+                      if matches_pattern(img_url)]
+        else:
+            images = [urljoin(self.url, img_url) for img_url in img_list]
+
         images = list(set(images))
         self.images = images
         if self.scrape_reverse:
