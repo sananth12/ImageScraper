@@ -46,7 +46,7 @@ Options
 --max-filesize	<size>          Limit on size of image in bytes (default: 100000000)
 --dump-urls                     Print the URLs of the images
 --scrape-reverse                Scrape the images in reverse order
---proxy-urls			Use the specified HTTP/HTTPS proxy
+--proxy-urls					Use the specified HTTP/HTTPS proxy
 ```
 
 ###If you downloaded the tar:
