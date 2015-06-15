@@ -51,7 +51,7 @@ def console_main():
     widgets = ['Progress: ', Percentage(), ' ', Bar(marker=RotatingMarker()),
                ' ', ETA(), ' ', FileTransferSpeed()]
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
-    pool = SimplePool.ThreadPool()
+    pool = SimplePool.ThreadPool(scraper.nthreads)
     status_lock = threading.Lock()
     for img_url in scraper.images:
         if status_flags['count'] == scraper.no_to_download:
