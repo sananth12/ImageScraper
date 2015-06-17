@@ -38,15 +38,25 @@ image_scraper.scrape_images(URL)
 Options
 -------
 ```sh
--h, --help                      Print help
--m, --max-images <number>       Maximum number images to be scraped
--s, --save-dir	<path>          Name of the folder to save the images
--g, --injected                  Scrape injected images
---formats [ [FORMATS ..]]       Specify the formats of images to be scraped
---max-filesize	<size>          Limit on size of image in bytes (default: 100000000)
---dump-urls                     Print the URLs of the images
---scrape-reverse                Scrape the images in reverse order
---proxy-urls					Use the specified HTTP/HTTPS proxy
+-h, --help            show this help message and exit
+-m MAX_IMAGES, --max-images MAX_IMAGES
+                    Limit on number of images
+-s SAVE_DIR, --save-dir SAVE_DIR
+                    Directory in which images should be saved
+-g, --injected        Scrape injected images
+--proxy-server PROXY_SERVER
+                    Proxy server to use
+--max-filesize MAX_FILESIZE
+                    Limit on size of image in bytes
+--dump-urls           Print the URLs of the images
+--formats [FORMATS [FORMATS ...]]
+                    Specify formats in a list without any separator. This
+                    argument must be after the URL.
+--scrape-reverse      Scrape the images in reverse order
+--filename-pattern FILENAME_PATTERN
+                    Only scrape images with filenames that match the given
+                    regex pattern
+--nthreads NTHREADS   The number of threads to use when downloading images.
 ```
 
 ###If you downloaded the tar:

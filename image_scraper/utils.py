@@ -25,6 +25,7 @@ class ImageScraper(object):
     page_url = None
     images = None
     proxy_url = None
+    nthreads = 10
     proxies = {}
 
     def __init__(self):
@@ -37,6 +38,7 @@ class ImageScraper(object):
         scrape_reverse = False
         use_ghost = False
         images = None
+        nthreads = 10
 
     def get_arguments(self):
         parser = argparse.ArgumentParser(
@@ -62,6 +64,8 @@ class ImageScraper(object):
                             action="store_true")
         parser.add_argument('--filename-pattern', type=str, default=None,
                             help="Only scrape images with filenames that match the given regex pattern")
+        parser.add_argument('--nthreads', type=int, default=10,
+                            help="The number of threads to use when downloading images.")
         args = parser.parse_args()
         self.url = args.url2scrape[0]
         if not re.match(r'^[a-zA-Z]+://', self.url):
@@ -89,6 +93,7 @@ class ImageScraper(object):
 
         self.scrape_reverse = args.scrape_reverse
         self.filename_pattern = args.filename_pattern
+        self.nthreads = args.nthreads
         return (self.url, self.no_to_download, self.format_list, self.download_path, self.max_filesize,
                 self.dump_urls, self.scrape_reverse, self.use_ghost, self.filename_pattern)
 
