@@ -6,9 +6,8 @@ python:
 # command to install package
 install:
   - pip install setuptools --upgrade
-#  - python setup.py install
   - pip install coveralls
-  - pip install ImageScraper
+  - python setup.py install
 # command to run tests
 script:
   - nosetests --with-coverage --cover-package=image_scraper
