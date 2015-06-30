@@ -6,7 +6,7 @@ from .progressbar import *
 from .utils import ImageScraper, download_worker_fn
 from .exceptions import *
 from setproctitle import setproctitle
-import SimplePool
+from concurrent.futures import ThreadPoolExecutor
 import threading
 import sys
 import os
@@ -51,18 +51,14 @@ def console_main():
     widgets = ['Progress: ', Percentage(), ' ', Bar(marker=RotatingMarker()),
                ' ', ETA(), ' ', FileTransferSpeed()]
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
-    pool = SimplePool.ThreadPool(scraper.nthreads)
+    pool = ThreadPoolExecutor(max_workers=scraper.nthreads)
     status_lock = threading.Lock()
     for img_url in scraper.images:
         if status_flags['count'] == scraper.no_to_download:
             break
-        download_job = SimplePool.ThreadJob(download_worker_fn, (scraper, img_url, pbar, status_flags, status_lock))
-        pool.add_job(download_job)
+        pool.submit(download_worker_fn, scraper, img_url, pbar, status_flags, status_lock)
         status_flags['count'] += 1
-
-    pool.start()
-    pool.finish()
-
+    pool.shutdown(wait=True)
     pbar.finish()
     print("\nDone!\nDownloaded {0} images\nFailed: {1}\n".format(
           status_flags['count']-status_flags['failed']-status_flags['over_max_filesize'], status_flags['failed']))
