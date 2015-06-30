@@ -2,7 +2,6 @@ import os
 import sys
 import threading
 import image_scraper
-import SimplePool
 import glob
 from nose.tools import eq_, ok_
 from image_scraper.utils import *
