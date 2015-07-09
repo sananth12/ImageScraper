@@ -21,7 +21,6 @@ $ pip install ImageScraper
 ``` 
 ####**Dependencies**
 Note that ``ImageScraper`` depends on ``lxml``, ``requests``, ``setproctitle``, and ``future``. 
-It also depends on `pyThreadpool` which can be downloaded and installed from [here](http://github.com/srirams6/py-Threadpool) temporarily.
 If you run into problems in the compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and ``libxslt-dev`` packages on your system.
 
 Usage
@@ -107,7 +106,7 @@ If you want to add features, improve them, or report issues, feel free to send a
 ###Contributors
 
 - [sananth12](https://github.com/sananth12) ([Anantha Natarajan](http://ananth.co.in))
-- [srirams6](https://github.com/srirams6) (Sriram Sundarraj)
+- [ssundarraj](https://github.com/ssundarraj) (Sriram Sundarraj)
 - [vigneshmanix](https://github.com/vigneshmanix) (Vignesh M) 
 - [osborne6](https://github.com/osborne6)
 - [tsleyson](https://github.com/tsleyson)
