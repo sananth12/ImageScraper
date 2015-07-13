@@ -1,0 +1,9 @@
+Package: ImageScraper
+Depends: libxml2-dev, libxslt-dev, python-dev
+Version: 0.0.1
+Section: unility
+Priority: optional
+Architecture: all
+Essential: no
+Maintainer: sananthanatarajan12@gmail.com
+Description: A simple image scraper to download all images from a given url

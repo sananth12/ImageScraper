@@ -1,0 +1,6 @@
+#!/bin/sh
+cd /tmp/ImageScraper
+sudo python setup.py install
+echo "Finished installing. \n"
+echo "Usage details:\n"
+image-scraper -h

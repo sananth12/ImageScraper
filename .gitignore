@@ -13,3 +13,5 @@ images_*
 MANIFEST*
 src/
 \#*
+build_deb/*.deb
+
