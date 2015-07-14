@@ -5,7 +5,7 @@ except ImportError:
 
 import sys
 
-requirement_list = [r for r in open('requirements.txt', 'r').read().split('\n') if r]
+requirement_list = [r.strip() for r in open('requirements.txt', 'r').readlines() if r]
 
 extra = {}
 if sys.version_info >= (3,):
