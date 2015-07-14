@@ -5,14 +5,18 @@ except ImportError:
 
 import sys
 
+requirement_list = [r for r in open('requirements.txt', 'r').read().split('\n') if r]
+
 extra = {}
 if sys.version_info >= (3,):
     extra['use_2to3'] = True
+else:
+    requirement_list.append('futures')
+
 
 setup(name='ImageScraper',
       version='2.0.7',
-      install_requires=[
-          r for r in open('requirements.txt', 'r').read().split('\n') if r],
+      install_requires= requirement_list,
       author='Anantha Natarajan S',
       author_email='sananthanatarajan12@gmail.com',
       packages=['image_scraper'],
