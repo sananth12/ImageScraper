@@ -9,7 +9,7 @@ echo "Building $PACKAGE..."
 
 
 # Sets the version in the control file.
-VERSION=`python -c "print [r for r in open('ImageScraper.control', 'r').read().split('\n') if 'Version' in r][0].split(':')[-1].strip()"`
+VERSION=`python -c "print [r for r in open('$PACKAGE.control', 'r').readlines() if 'Version' in r][0].split(':')[-1].strip()"`
 ARCH=all
 
 
