@@ -1,6 +1,7 @@
+""" Contains ImageScraper class and utility functions. """
+
 from future.standard_library import install_aliases
 install_aliases()
-import sys
 from lxml import html
 import requests
 from urllib.parse import urlparse, urljoin
@@ -8,39 +9,32 @@ from past.utils import old_div
 import os
 import argparse
 import re
-from image_scraper.exceptions import *
-import threading
+from .exceptions import PageLoadError, DirectoryAccessError,\
+                        DirectoryCreateError, ImageDownloadError, ImageSizeError
+
 
 class ImageScraper(object):
-    url = None
-    no_to_download = 0
-    format_list = []
-    download_path = "images"
-    max_filesize = 100000000
-    dump_urls = False
-    scrape_reverse = False
-    use_ghost = False
-    filename_pattern = None
-    page_html = None
-    page_url = None
-    images = None
-    proxy_url = None
-    nthreads = 10
-    proxies = {}
-
+    """ Scraper class. """
     def __init__(self):
-        url = None
-        no_to_download = 0
-        format_list = []
-        download_path = "images"
-        max_filesize = 100000000
-        dump_urls = False
-        scrape_reverse = False
-        use_ghost = False
-        images = None
-        nthreads = 10
+        self.url = None
+        self.no_to_download = 0
+        self.format_list = []
+        self.download_path = "images"
+        self.max_filesize = 100000000
+        self.dump_urls = False
+        self.scrape_reverse = False
+        self.use_ghost = False
+        self.images = None
+        self.nthreads = 10
+        self.filename_pattern = None
+        self.page_html = None
+        self.page_url = None
+        self.proxy_url = None
+        self.proxies = {}
 
     def get_arguments(self):
+        """ Gets the arguments from the command line. """
+
         parser = argparse.ArgumentParser(
             description='Downloads images from given URL')
         parser.add_argument('url2scrape', nargs=1, help="URL to scrape")
@@ -58,12 +52,14 @@ class ImageScraper(object):
                             help="Print the URLs of the images",
                             action="store_true")
         parser.add_argument('--formats', nargs="*", default=None,
-                            help="Specify formats in a list without any separator. This argument must be after the URL.")
+                            help="Specify formats in a list without any separator.\
+                                  This argument must be after the URL.")
         parser.add_argument('--scrape-reverse', default=False,
                             help="Scrape the images in reverse order",
                             action="store_true")
         parser.add_argument('--filename-pattern', type=str, default=None,
-                            help="Only scrape images with filenames that match the given regex pattern")
+                            help="Only scrape images with filenames that\
+                                  match the given regex pattern")
         parser.add_argument('--nthreads', type=int, default=10,
                             help="The number of threads to use when downloading images.")
         args = parser.parse_args()
@@ -94,10 +90,13 @@ class ImageScraper(object):
         self.scrape_reverse = args.scrape_reverse
         self.filename_pattern = args.filename_pattern
         self.nthreads = args.nthreads
-        return (self.url, self.no_to_download, self.format_list, self.download_path, self.max_filesize,
+        return (self.url, self.no_to_download, self.format_list,
+                self.download_path, self.max_filesize,
                 self.dump_urls, self.scrape_reverse, self.use_ghost, self.filename_pattern)
 
     def get_html(self):
+        """ Downloads HTML content of page given the page_url"""
+
         if self.use_ghost:
             self.url = urljoin("http://", self.url)
             import selenium
@@ -129,6 +128,7 @@ class ImageScraper(object):
         return (self.page_html, self.page_url)
 
     def get_img_list(self):
+        """ Gets list of images from the page_html. """
         tree = html.fromstring(self.page_html)
         img = tree.xpath('//img/@src')
         links = tree.xpath('//a/@href')
@@ -142,6 +142,8 @@ class ImageScraper(object):
 
             # Verifies filename in the image URL matches pattern
             def matches_pattern(img_url):
+                """ Function to check if pattern is matched. """
+
                 img_filename = urlparse(img_url).path.split('/')[-1]
                 return pattern.search(img_filename)
 
@@ -157,6 +159,11 @@ class ImageScraper(object):
         return self.images
 
     def process_download_path(self):
+        """ Processes the download path.
+
+            It checks if the path exists and the scraper has
+            write permissions.
+        """
         if os.path.exists(self.download_path):
             if not os.access(self.download_path, os.W_OK):
                 raise DirectoryAccessError
@@ -167,9 +174,12 @@ class ImageScraper(object):
         return True
 
     def download_image(self, img_url):
+        """ Downloads a single image.
+
+            Downloads img_url using self.page_url as base.
+            Also, raises the appropriate exception if required.
+        """
         img_request = None
-        success_flag = True
-        size_success_flag = True
         try:
             img_request = requests.request(
                 'get', img_url, stream=True, proxies=self.proxies)
@@ -180,7 +190,7 @@ class ImageScraper(object):
 
         if img_url[-3:] == "svg" or int(img_request.headers['content-length']) < self.max_filesize:
             img_content = img_request.content
-            with open(os.path.join(self.download_path,  img_url.split('/')[-1]), 'wb') as f:
+            with open(os.path.join(self.download_path, img_url.split('/')[-1]), 'wb') as f:
                 byte_image = bytes(img_content)
                 f.write(byte_image)
         else:
@@ -188,14 +198,16 @@ class ImageScraper(object):
         return True
 
     def process_links(self, links):
-        x = []
-        for l in links:
-            if os.path.splitext(l)[1][1:].strip().lower() in self.format_list:
-                x.append(l)
-        return x
+        """ Function to process the list of links and filter required links."""
+        links_list = []
+        for link in links:
+            if os.path.splitext(link)[1][1:].strip().lower() in self.format_list:
+                links_list.append(link)
+        return links_list
 
 
 def download_worker_fn(scraper, img_url, pbar, status_flags, status_lock):
+    """ Stnadalone function that downloads images. """
     failed = False
     size_failed = False
     try:

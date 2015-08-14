@@ -1,28 +1,29 @@
+""" Main file containing console command code. """
+
 from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
-from past.utils import old_div
-from .progressbar import *
+from .progressbar import ProgressBar, Percentage, Bar, RotatingMarker, ETA, FileTransferSpeed
 from .utils import ImageScraper, download_worker_fn
-from .exceptions import *
+from .exceptions import DirectoryAccessError, DirectoryCreateError, PageLoadError
 from setproctitle import setproctitle
 from concurrent.futures import ThreadPoolExecutor
 import threading
 import sys
-import os
 
 
 def console_main():
+    """ This function is called when the command is executed. """
     setproctitle('image-scraper')
     scraper = ImageScraper()
     scraper.get_arguments()
     print("\nImageScraper\n============\nRequesting page....\n")
     try:
         scraper.get_html()
-    except PageLoadError as e:
+    except PageLoadError as err:
         scraper.page_html = ""
         scraper.page_url = ""
-        print("Page failed to load. Status code: {0}".format(e.status_code))
+        print("Page failed to load. Status code: {0}".format(err.status_code))
         sys.exit()
 
     scraper.get_img_list()
@@ -61,42 +62,7 @@ def console_main():
     pool.shutdown(wait=True)
     pbar.finish()
     print("\nDone!\nDownloaded {0} images\nFailed: {1}\n".format(
-          status_flags['count']-status_flags['failed']-status_flags['over_max_filesize'], status_flags['failed']))
+        status_flags['count']-status_flags['failed']-status_flags['over_max_filesize'],
+        status_flags['failed']))
     return
 
-
-def scrape_images(url, no_to_download=None,
-                  format_list=["jpg", "png", "gif", "svg", "jpeg"],
-                  download_path='images', max_filesize=100000000,
-                  dump_urls=False, use_ghost=False, filename_pattern=None):
-
-    scraper = ImageScraper()
-    scraper.url = url
-    scraper.filename_pattern = filename_pattern
-    page_html, page_url = scraper.get_html()
-    images = scraper.get_img_list()
-
-    download_path = os.path.join(os.getcwd(), download_path)
-
-    if len(images) == 0:
-        return 0, 0  # count, failed
-    if no_to_download is None:
-        no_to_download = len(images)
-
-    process_download_path(download_path)
-
-    count = 0
-    failed = 0
-    over_max_filesize = 0
-
-    for img_url in images:
-        if count == no_to_download:
-            break
-        try:
-            download_image(img_url, download_path, max_filesize)
-        except ImageDownloadError:
-            failed += 1
-        except ImageSizeError:
-            over_max_filesize += 1
-        count += 1
-    return count, failed
