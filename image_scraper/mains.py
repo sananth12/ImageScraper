@@ -21,9 +21,10 @@ def console_main():
     try:
         scraper.get_html()
     except PageLoadError as err:
-        scraper.page_html = ""
-        scraper.page_url = ""
-        print("Page failed to load. Status code: {0}".format(err.status_code))
+        if err.status_code is None:
+            print("ImageScraper is unable to acces the internet.")
+        else:
+            print("Page failed to load. Status code: {0}".format(err.status_code))
         sys.exit()
 
     scraper.get_img_list()

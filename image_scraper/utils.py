@@ -119,9 +119,13 @@ class ImageScraper(object):
                 page = requests.get(self.url, proxies=self.proxies)
                 if page.status_code != 200:
                     raise PageLoadError(page.status_code)
-            finally:
+            except requests.exceptions.ConnectionError:
+                raise PageLoadError(None)
+            try:
                 page_html = page.text
                 page_url = page.url
+            except UnboundLocalError:
+                raise PageLoadError(None)
 
         self.page_html = page_html
         self.page_url = page_url
