@@ -12,8 +12,19 @@ import threading
 import sys
 
 
+def main():
+    """ Called when the command is executed
+
+        Calls the function that starts the script
+        handles KeyboardInterrupt
+    """
+    try:
+        console_main()
+    except KeyboardInterrupt:
+        print ("Scraping stopped by user.")
+
 def console_main():
-    """ This function is called when the command is executed. """
+    """ This function handles all the console action. """
     setproctitle('image-scraper')
     scraper = ImageScraper()
     scraper.get_arguments()

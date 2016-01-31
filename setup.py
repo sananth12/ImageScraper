@@ -21,7 +21,7 @@ setup(name='ImageScraper',
       author_email='sananthanatarajan12@gmail.com',
       packages=['image_scraper'],
       entry_points={
-          'console_scripts': ['image-scraper=image_scraper:console_main'],
+          'console_scripts': ['image-scraper=image_scraper:main'],
       },
       test_suite='tests',
       url='https://github.com/sananth12/ImageScraper/',
