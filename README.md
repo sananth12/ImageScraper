@@ -28,7 +28,9 @@ Usage
 ```sh
 $ image-scraper [OPTIONS] URL
 ```
-You can also use it in your Python scripts.
+
+
+You can also use it in your Python scripts. (Deprecated)
 ```py
 import image_scraper
 image_scraper.scrape_images(URL)
