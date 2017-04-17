@@ -6,20 +6,20 @@ A high performance, easy to use, multithreaded command line tool which downloads
 | ------------ | ------- | --------- | ------------- |
 | [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) |  [![Latest Version](https://pypip.in/v/ImageScraper/badge.png)](https://pypi.python.org/pypi/ImageScraper/) | [![PyPi downloads](http://img.shields.io/badge/downloads-20k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) | [![Coverage Status](https://coveralls.io/repos/sananth12/ImageScraper/badge.svg?branch=coverage)](https://coveralls.io/r/sananth12/ImageScraper?branch=coverage) |
 
-####Demo
+#### Demo
 Click [here](http://showterm.io/d3aef5bc3f37cd49757d1#fast) to see it in action!
 
 Download
 --------
-###tar file:
+### tar file:
 Grab the latest stable build from **- Pip: [https://pypi.python.org/pypi/ImageScraper](https://pypi.python.org/pypi/ImageScraper)** 
 
-###pip install (recommended):
+### pip install (recommended):
 You can also download using pip:
 ```sh
 $ pip install ImageScraper
 ``` 
-####**Dependencies**
+#### **Dependencies**
 Note that ``ImageScraper`` depends on ``lxml``, ``requests``, ``setproctitle``, and ``future``. 
 If you run into problems in the compilation of ``lxml`` through ``pip``, install the ``libxml2-dev`` and ``libxslt-dev`` packages on your system.
 
@@ -60,7 +60,7 @@ Options
 --nthreads NTHREADS   The number of threads to use when downloading images.
 ```
 
-###If you downloaded the tar:
+### If you downloaded the tar:
 Extract the contents of the tar file.
 
 
@@ -89,7 +89,7 @@ Scrape only gifs and download to folder ./mygifs
 $ image-scraper -s mygifs ananth.co.in/test.html --formats gif
 ```
 
-####NOTE:
+#### NOTE:
 By default, a new folder called "images_<domain>" will be created in the working directory, containing all the downloaded images.
 
 
@@ -105,7 +105,7 @@ Contribute
 ----------
 If you want to add features, improve them, or report issues, feel free to send a pull request!!
 
-###Contributors
+### Contributors
 
 - [sananth12](https://github.com/sananth12) ([Anantha Natarajan](http://ananth.co.in))
 - [ssundarraj](https://github.com/ssundarraj) (Sriram Sundarraj)
