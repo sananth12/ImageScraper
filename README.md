@@ -2,8 +2,8 @@ ImageScraper :page_with_curl:
 ============
 A high performance, easy to use, multithreaded command line tool which downloads images from the given webpage.
 
-| Build Status | Version | Downloads | Test Coverage |
-| ------------ | ------- | --------- | ------------- |
+| Build Status | Downloads | Test Coverage |
+| ------------ | --------- | ------------- |
 | [![Build Status](https://travis-ci.org/sananth12/ImageScraper.svg?branch=master)](https://travis-ci.org/sananth12/ImageScraper) | [![PyPi downloads](http://img.shields.io/badge/downloads-30k%20total-blue.svg)](https://pypi.python.org/pypi/ImageScraper) | [![Coverage Status](https://coveralls.io/repos/sananth12/ImageScraper/badge.svg?branch=coverage)](https://coveralls.io/r/sananth12/ImageScraper?branch=coverage) |
 
 #### Demo
