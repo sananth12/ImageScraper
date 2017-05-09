@@ -93,6 +93,8 @@ $ image-scraper -s mygifs ananth.co.in/test.html --formats gif
 By default, a new folder called "images_<domain>" will be created in the working directory, containing all the downloaded images.
 
 
+
+
 Issues
 ------
 
@@ -114,6 +116,12 @@ If you want to add features, improve them, or report issues, feel free to send a
 - [tsleyson](https://github.com/tsleyson)
 - [joshwget](https://github.com/joshwget)
 - [dannyflax](https://github.com/dannyflax)
+
+Disclaimer
+----------
+
+ImageScraper is to be used education/research purposes only. The authors takes NO responsibility and/or liability for how you choose to use any of the tools/source code/any files provided. By using ImageScraper, you understand that you are AGREEING TO USE AT YOUR OWN RISK.
+
 
 License
 -------
