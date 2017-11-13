@@ -60,7 +60,7 @@ def console_main():
         for img_url in scraper.images:
             print(img_url)
 
-    status_flags = {'count': 0, 'percent': 0.0, 'failed': 0, 'over_max_filesize': 0}
+    status_flags = {'count': 0, 'percent': 0.0, 'failed': 0, 'under_min_or_over_max_filesize': 0}
     widgets = ['Progress: ', Percentage(), ' ', Bar(marker=RotatingMarker()),
                ' ', ETA(), ' ', FileTransferSpeed()]
     pbar = ProgressBar(widgets=widgets, maxval=100).start()
@@ -74,7 +74,7 @@ def console_main():
     pool.shutdown(wait=True)
     pbar.finish()
     print("\nDone!\nDownloaded {0} images\nFailed: {1}\n".format(
-        status_flags['count']-status_flags['failed']-status_flags['over_max_filesize'],
+        status_flags['count']-status_flags['failed']-status_flags['under_min_or_over_max_filesize'],
         status_flags['failed']))
     return
 
