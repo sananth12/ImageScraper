@@ -47,6 +47,8 @@ Options
 -g, --injected        Scrape injected images
 --proxy-server PROXY_SERVER
                     Proxy server to use
+--min-filesize MIN_FILESIZE
+                    Limit on size of image in bytes
 --max-filesize MAX_FILESIZE
                     Limit on size of image in bytes
 --dump-urls           Print the URLs of the images

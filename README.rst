@@ -63,6 +63,7 @@ Options
     -s, --save-dir  <path>          Name of the folder to save the images
     -g, --injected                  Scrape injected images
     --formats [ [FORMATS ..]]       Specify the formats of images to be scraped
+    --min-filesize  <size>          Limit on size of image in bytes (default: 0)
     --max-filesize  <size>          Limit on size of image in bytes (default: 100000000)
     --dump-urls                     Print the URLs of the images
     --scrape-reverse                Scrape the images in reverse order

@@ -20,6 +20,7 @@ class ImageScraper(object):
         self.no_to_download = 0
         self.format_list = []
         self.download_path = "images"
+        self.min_filesize = 0
         self.max_filesize = 100000000
         self.dump_urls = False
         self.scrape_reverse = False
@@ -46,6 +47,8 @@ class ImageScraper(object):
                             action="store_true")
         parser.add_argument('--proxy-server', type=str, default=None,
                             help="Proxy server to use")
+        parser.add_argument('--min-filesize', type=int, default=0,
+                            help="Limit on size of image in bytes")
         parser.add_argument('--max-filesize', type=int, default=100000000,
                             help="Limit on size of image in bytes")
         parser.add_argument('--dump-urls', default=False,
@@ -75,6 +78,7 @@ class ImageScraper(object):
         self.use_ghost = args.injected
         self.format_list = args.formats if args.formats else [
             "jpg", "png", "gif", "svg", "jpeg"]
+        self.min_filesize = args.min_filesize
         self.max_filesize = args.max_filesize
         self.dump_urls = args.dump_urls
         self.proxy_url = args.proxy_server
@@ -91,7 +95,7 @@ class ImageScraper(object):
         self.filename_pattern = args.filename_pattern
         self.nthreads = args.nthreads
         return (self.url, self.no_to_download, self.format_list,
-                self.download_path, self.max_filesize,
+                self.download_path, self.min_filesize, self.max_filesize,
                 self.dump_urls, self.scrape_reverse, self.use_ghost, self.filename_pattern)
 
     def get_html(self):
@@ -192,7 +196,8 @@ class ImageScraper(object):
         except:
             raise ImageDownloadError()
 
-        if img_url[-3:] == "svg" or int(img_request.headers['content-length']) < self.max_filesize:
+        if img_url[-3:] == "svg" or (int(img_request.headers['content-length']) > self.min_filesize and\
+                                     int(img_request.headers['content-length']) < self.max_filesize):
             img_content = img_request.content
             with open(os.path.join(self.download_path, img_url.split('/')[-1]), 'wb') as f:
                 byte_image = bytes(img_content)
@@ -224,7 +229,7 @@ def download_worker_fn(scraper, img_url, pbar, status_flags, status_lock):
     if failed:
         status_flags['failed'] += 1
     elif size_failed:
-        status_flags['over_max_filesize'] += 1
+        status_flags['under_min_or_over_max_filesize'] += 1
     status_flags['percent'] = status_flags[
         'percent'] + old_div(100.0, scraper.no_to_download)
     pbar.update(status_flags['percent'] % 100)
