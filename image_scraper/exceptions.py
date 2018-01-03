@@ -11,7 +11,7 @@ class DirectoryCreateError(Exception):
 
 
 class ImageDownloadError(Exception):
-    """ Exception to be raised when the imace can't be downloaded. """
+    """ Exception to be raised when the image can't be downloaded. """
     status_code = 0
 
     def __init__(self, status_code=0):
