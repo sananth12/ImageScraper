@@ -162,6 +162,23 @@ class ImageScraper(object):
 
         images = list(set(images))
         self.images = images
+        
+        css = tree.xpath("//link[@type='text/css']/@href")
+        css_images = []
+        for css_file in css:
+            if not re.match(r'^[a-zA-Z]+://', css_file):
+                css_file = self.url + css_file
+            image_list = re.findall('url\(([^)]+)\)', requests.get(css_file).content.decode('utf-8'))
+
+            for image in image_list:
+                if image.startswith('//'):
+                    image = 'https:' + image
+                if not re.match(r'^[a-zA-Z]+://', image):
+                    image = self.url + image.strip('"').strip("'").strip('../')
+
+                css_images.append(image)
+        self.images.extend(self.process_links(css_images))
+        
         if self.scrape_reverse:
             self.images.reverse()
         return self.images
