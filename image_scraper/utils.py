@@ -112,10 +112,11 @@ class ImageScraper(object):
             page_url = driver.current_url
             driver.quit()
         else:
+          headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
             if self.proxy_url:
                 print("Using proxy: " + self.proxy_url + "\n")
             try:
-                page = requests.get(self.url, proxies=self.proxies)
+                page = requests.get(self.url, headers=headers, proxies=self.proxies)
                 if page.status_code != 200:
                     raise PageLoadError(page.status_code)
             except requests.exceptions.MissingSchema:
